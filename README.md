@@ -18,5 +18,9 @@ Make a clear list of features that work/dont work
 
 ## Adventurer Subclasses
 
-replace this with your documentation for your two Adventurer subclasses. If you modify or replace the provided CodeWarrior class, please provide documentation for that as well.
+### Swordsman 
+|Ability| |Name| |Description|
+|_Attack_| |Sword Slash| |does damage and has a chance to cause bleed which will be a damage over time|
+|_Support_| |Sharpen| |sharpens your blade and the next attack will do 1.5 times damage|
+|_Speical Ability_| |Lethailty| |under a certain health value on the opponent, this attack will one shot them|
 
