@@ -15,20 +15,25 @@ Make a clear list of features that work/dont work
 
 :beetle: This is a bug that affects the game.
 
+### Progress
+
+Implementation of Classes :x:
+
+Theme :x:
 
 ## Adventurer Subclasses
 
 ### Swordsman 
 | Ability | Name | Description |
 | :-----: | :-----: | :-----: |
-| _'Attack'_ | Sword Slash | does damage and has a chance to cause bleed which will be a damage over time |
-| _'Support'_ | Sharpen | sharpens your blade and the next attack will do 1.5 times damage |
-| _'Special Ability'_ | Lethailty | under a certain health value on the opponent, this attack will one shot them |
+| _Attack_ | Sword Slash | does damage and has a chance to cause bleed which will be a damage over time |
+| _Support_ | Sharpen | sharpens your blade and the next attack will do 1.5 times damage |
+| _Special Ability_ | Lethailty | under a certain health value on the opponent, this attack will one shot them |
 
 ### Archmage
 | Ability | Name | Description |
 | :-----: | :-----: | :-----: |
-| _'Attack'_ | Blast | does damage to opponent, not too much damage |
-| _'Support'_ | Force Field | creates a shield that blocks 20 damage, can be applied on teammate or self |
-| _'Special Ability"_ | Freeze Storm |freezes all enemies for two turns |
+| _Attack_ | Blast | does damage to opponent, not too much damage |
+| _Support_ | Force Field | creates a shield that blocks 20 damage, can be applied on teammate or self |
+| _Special Ability_ | Freeze Storm |freezes all enemies for two turns |
 
