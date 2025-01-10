@@ -41,6 +41,8 @@ public class Archmage extends Adventurer{
     }
 
     public String support(ArrayList<Adventurer> others, int n) {
+        Adventurer ally = others.get(n);
+        int shield = mana;
         
     }
 }
