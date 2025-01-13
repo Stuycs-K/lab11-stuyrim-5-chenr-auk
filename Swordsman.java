@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Swordsman extends Adventurer {
   int HP;
   int Rage, maxRage;
@@ -28,8 +30,8 @@ public class Swordsman extends Adventurer {
     return "Swordsman attacked " + other.getName();
   }
 
-  public String specialAttack(Adventurer other) {
-    return "Swordsman special attacked " + other.getName();
+  public String specialAttack(ArrayList<Adventurer> other, int n) {
+    return "Swordsman special attacked " + other.get(n).getName();
   }
 
   public String support() {
