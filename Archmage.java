@@ -37,12 +37,14 @@ public class Archmage extends Adventurer{
         int damage = mana / 2;
         enemy.applyDamage(damage);
         restoreSpecial(2);
-        return this + " hit " +enemy+ " for " + damage + " damage and channeled 2 mana!";
+        return this + " hit " + enemy + " for " + damage + " damage and channeled 2 mana!";
     }
 
     public String support(ArrayList<Adventurer> others, int n) {
         Adventurer ally = others.get(n);
         int shield = mana;
-        
+        ally.setHP(shield + ally.getHP());
+        mana = mana / 2;
+        return this + " shielded " + ally + " for " + shield + " shield and used " + mana + " mana!";
     }
 }
