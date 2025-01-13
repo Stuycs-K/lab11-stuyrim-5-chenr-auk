@@ -29,13 +29,15 @@ public class Swordsman extends Adventurer {
   public String attack(ArrayList<Adventurer> other, int n) {
     int damage = (int)(Math.random()*5)+5;
     int bleed = (int)(Math.random()*5);
-    
+
     if (bleed == 0) {
       other.get(n).applyDamage(damage);
+      other.get(n).setStatus("bleed");
       restoreSpecial(2);
 
-      return this + " attacked " + other.get(n).getName() + " for " + damage + " damage! " + this + " gained 2 Rage";
+      return this + " attacked " + other.get(n).getName() + " for " + damage + " damage and applied BLEED for two turns. " + this + " gained 2 Rage";
     }
+
     else {
       other.get(n).applyDamage(damage);
       restoreSpecial(2);
