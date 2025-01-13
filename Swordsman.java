@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Swordsman extends Adventurer {
   int HP;
   int Rage, maxRage;
@@ -24,12 +26,12 @@ public class Swordsman extends Adventurer {
     this.Rage = n;
   }
 
-  public String attack(Adventurer other) {
-    return "Swordsman attacked " + other.getName();
+  public String attack(ArrayList<Adventurer> other, int n) {
+    return "Swordsman attacked " + other.get(n).getName();
   }
 
-  public String specialAttack(Adventurer other) {
-    return "Swordsman special attacked " + other.getName();
+  public String specialAttack(ArrayList<Adventurer> other, int n) {
+    return "Swordsman special attacked " + other.get(n).getName();
   }
 
   public String support() {
@@ -37,8 +39,8 @@ public class Swordsman extends Adventurer {
     return "Swordsman sharpened his blade! Increases next attack damage by 1.5x"; 
   }
 
-  public String support(Adventurer other) {
+  public String support(ArrayList<Adventurer> other, int n) {
     // increase attack damage of a teammate
-    return "Swordsman somehow increased the damage of someone else! Increases " + other.getName() + "'s next attack damage by 1.5x."; 
+    return "Swordsman somehow increased the damage of someone else! Increases " + other.get(n).getName() + "'s next attack damage by 1.5x."; 
   }
 }
