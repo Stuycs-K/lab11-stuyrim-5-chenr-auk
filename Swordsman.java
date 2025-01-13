@@ -26,8 +26,8 @@ public class Swordsman extends Adventurer {
     this.Rage = n;
   }
 
-  public String attack(Adventurer other) {
-    return "Swordsman attacked " + other.getName();
+  public String attack(ArrayList<Adventurer> other, int n) {
+    return "Swordsman attacked " + other.get(n).getName();
   }
 
   public String specialAttack(ArrayList<Adventurer> other, int n) {
