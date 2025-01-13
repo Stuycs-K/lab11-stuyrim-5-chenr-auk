@@ -52,4 +52,11 @@ public class Archmage extends Adventurer{
         mana += 5; 
         return this + " channeled 5 mana!";
     }
+
+    public String specialAttack(ArrayList<Adventurer> others, int n) {
+        for (int i = 0; i < others.size(); i++) {
+            others.get(i).setStatus("frozen");
+        }
+        return this + " froze all enemies for 2 turns!";
+    }
 }
