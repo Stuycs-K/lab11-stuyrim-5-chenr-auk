@@ -26,9 +26,9 @@ Theme :x:
 ### Swordsman 
 | Ability | Name | Description |
 | :-----: | :-----: | :-----: |
-| _Attack_ | Sword Slash | does damage and has a chance to cause bleed which will be a damage over time |
+| _Attack_ | Sword Slash | does 5 to 10 damage and has a chance to cause bleed which will be a damage over time |
 | _Support_ | Sharpen | sharpens your blade and the next attack will do 1.5 times damage |
-| _Special Ability_ | Lethal Strike | under a certain health value on the opponent, this attack will one shot them |
+| _Special Ability_ | Lethal Strike | [requires at least 3 Rage] if an opponent has half HP or less, this attack will one shot them, if not, deal 10 damage guaranteed |
 
 ### Archmage
 | Ability | Name | Description |

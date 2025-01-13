@@ -7,7 +7,7 @@ public class Swordsman extends Adventurer {
   public Swordsman() {
     HP = 30;
     Rage = 0;
-    maxRage = 10;
+    maxRage = 5;
   }
 
   public String getSpecialName() {
@@ -28,14 +28,42 @@ public class Swordsman extends Adventurer {
 
   public String attack(ArrayList<Adventurer> other, int n) {
     int damage = (int)(Math.random()*5)+5;
-    other.get(n).applyDamage(damage);
-    restoreSpecial(2);
+    int bleed = (int)(Math.random()*5);
 
-    return this + " attacked " + other.get(n).getName() + " for " + damage + " damage! " + this + " gained 2 Rage";
+    if (bleed == 0) {
+      other.get(n).applyDamage(damage);
+      other.get(n).setStatus("bleed");
+      restoreSpecial(2);
+
+      return this + " attacked " + other.get(n).getName() + " for " + damage + " damage and applied BLEED for two turns. " + this + " gained 2 Rage";
+    }
+
+    else {
+      other.get(n).applyDamage(damage);
+      restoreSpecial(2);
+
+      return this + " attacked " + other.get(n).getName() + " for " + damage + " damage! " + this + " gained 2 Rage";
+    }
   }
 
   public String specialAttack(ArrayList<Adventurer> other, int n) {
-    return "Swordsman special attacked " + other.get(n).getName();
+    if (this.getSpecial() >= 3) {
+      int otherHealth = other.get(n).getHP();
+      if (otherHealth < other.get(n).getmaxHP() / 2) {
+        other.get(n).setHP(0);
+        this.setSpecial(0);
+        return this + " dealt a fatal blow to " + other.get(n).getName() + "!";
+      }
+      else {
+        int damage = 10;
+        other.get(n).applyDamage(damage);
+        this.setSpecial(this.getSpecial()-3);
+        return this + " attacked " + other.get(n).getName() + " for " + damage + " damage! " + this + " gained 2 Rage";
+      }
+    }
+    else {
+      return "Not enough Rage!";
+    }
   }
 
   public String support() {
