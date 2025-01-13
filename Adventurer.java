@@ -102,4 +102,8 @@ public abstract class Adventurer{
   public void setName(String s){
     this.name = s;
   }
+
+  public void setStatus(String s) {
+    statusEffect = s;
+  }
 }
