@@ -2,7 +2,7 @@ import java.util.*;
 public class Game{
   private static final int WIDTH = 80;
   private static final int HEIGHT = 30;
-  private static final int BORDER_COLOR = Text.BLACK;
+  private static final int BORDER_COLOR = Text.BLUE;
   private static final int BORDER_BACKGROUND = Text.WHITE + Text.BACKGROUND;
 
   public static void main(String[] args) {
@@ -14,6 +14,18 @@ public class Game{
   public static void drawBackground(){
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     //YOUR CODE HERE
+
+    // top border
+    for (int i = 1; i < 81; i++) {
+      drawText("=", 1, i);
+      drawText("=", 31, i);
+    }
+    // bottom border
+    for (int j = 1; j < 32; j++) {
+      drawText("|", j, 1);
+      drawText("|", j, 81);
+    }
+    drawParty(null, BORDER_BACKGROUND);
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
   }
 
@@ -40,6 +52,11 @@ public class Game{
   public static void TextBox(int row, int col, int width, int height, String text){
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     //YOUR CODE HERE
+    while (col < height) {
+      while (text.length() > width) {
+        
+      }
+    }
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
   }
 
