@@ -58,8 +58,8 @@ public class Game{
         return new Swordsman();
       }
 
-      else if (chooser == 2) {
-        return new CodeWarrior("Bob"+(int)(Math.random()*100));
+      else {
+        return new CodeWarrior("Bob");
       }
     }
 
@@ -137,6 +137,10 @@ public class Game{
     //start with 1 boss and modify the code to allow 2-3 adventurers later.
     ArrayList<Adventurer>enemies = new ArrayList<Adventurer>();
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+    int enemyCount = 1 + (int)(Math.random() * 2);
+    for (int i = 0; i < enemyCount; i++) {
+      enemies.add(createRandomAdventurer());
+    }
     //YOUR CODE HERE
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
@@ -145,6 +149,10 @@ public class Game{
     ArrayList<Adventurer> party = new ArrayList<>();
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     //YOUR CODE HERE
+    int partyCount = 2 + (int)(Math.random() * 2);
+    for (int i = 0; i < partyCount; i++) {
+      party.add(createRandomAdventurer());
+    }
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
     boolean partyTurn = true;
