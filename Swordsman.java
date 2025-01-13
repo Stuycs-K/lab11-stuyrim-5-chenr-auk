@@ -27,7 +27,16 @@ public class Swordsman extends Adventurer {
   }
 
   public String attack(ArrayList<Adventurer> other, int n) {
-    int damage = (int)(Math.random()*5)+5;
+    double damageMult = 0;
+    if (this.getStatus().equals("highDamage")) {
+      damageMult = 1.5;
+    }
+    else {
+      damageMult = 1;
+    }
+    this.setStatus("none");
+
+    int damage = (int)(((Math.random()*5)+5)*damageMult);
     int bleed = (int)(Math.random()*5);
 
     if (bleed == 0) {
@@ -47,7 +56,7 @@ public class Swordsman extends Adventurer {
   }
 
   public String specialAttack(ArrayList<Adventurer> other, int n) {
-    int damageMult = 0;
+    double damageMult = 0;
     if (this.getStatus().equals("highDamage")) {
       damageMult = 1.5;
     }
@@ -64,7 +73,7 @@ public class Swordsman extends Adventurer {
         return this + " dealt a fatal blow to " + other.get(n).getName() + "!";
       }
       else {
-        int damage = 10*damageMult;
+        int damage = (int)(10*damageMult);
         other.get(n).applyDamage(damage);
         this.setSpecial(this.getSpecial()-3);
         return this + " attacked " + other.get(n).getName() + " for " + damage + " damage! " + this + " gained 2 Rage";
