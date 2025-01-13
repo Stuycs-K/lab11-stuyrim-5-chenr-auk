@@ -106,4 +106,8 @@ public abstract class Adventurer{
   public void setStatus(String s) {
     statusEffect = s;
   }
+
+  public String getStatus() {
+    return statusEffect;
+  }
 }
