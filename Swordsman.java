@@ -7,7 +7,7 @@ public class Swordsman extends Adventurer {
   public Swordsman() {
     HP = 30;
     Rage = 0;
-    maxRage = 10;
+    maxRage = 5;
   }
 
   public String getSpecialName() {
@@ -35,7 +35,18 @@ public class Swordsman extends Adventurer {
   }
 
   public String specialAttack(ArrayList<Adventurer> other, int n) {
-    return "Swordsman special attacked " + other.get(n).getName();
+    int otherHealth = other.get(n).getHP();
+
+    if (otherHealth < other.get(n).getmaxHP() / 2) {
+      other.get(n).setHP(0);
+      this.setSpecial(0);
+    }
+    else {
+      int damage = (int)(Math.random()*5)+5+this.getSpecial();
+      other.get(n).applyDamage(damage);
+      this.setSpecial(0);
+    }
+
   }
 
   public String support() {
