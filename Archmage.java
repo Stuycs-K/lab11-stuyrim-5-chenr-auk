@@ -4,7 +4,7 @@ public class Archmage extends Adventurer{
     int mana, maxMana;
     public Archmage(String name, int hp){
         super(name,hp);
-        maxMana = 20;
+        maxMana = 40;
         mana = maxMana/2;
       }
     
@@ -46,5 +46,10 @@ public class Archmage extends Adventurer{
         ally.setHP(shield + ally.getHP());
         mana = mana / 2;
         return this + " shielded " + ally + " for " + shield + " shield and used " + mana + " mana!";
+    }
+
+    public String support() {
+        mana += 5; 
+        return this + " channeled 5 mana!";
     }
 }
