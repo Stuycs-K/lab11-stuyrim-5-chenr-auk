@@ -39,8 +39,8 @@ public class Swordsman extends Adventurer {
     return "Swordsman sharpened his blade! Increases next attack damage by 1.5x"; 
   }
 
-  public String support(Adventurer other) {
+  public String support(ArrayList<Adventurer> other, int n) {
     // increase attack damage of a teammate
-    return "Swordsman somehow increased the damage of someone else! Increases " + other.getName() + "'s next attack damage by 1.5x."; 
+    return "Swordsman somehow increased the damage of someone else! Increases " + other.get(n).getName() + "'s next attack damage by 1.5x."; 
   }
 }
