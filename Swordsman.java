@@ -27,7 +27,11 @@ public class Swordsman extends Adventurer {
   }
 
   public String attack(ArrayList<Adventurer> other, int n) {
-    return "Swordsman attacked " + other.get(n).getName();
+    int damage = (int)(Math.random()*5)+5;
+    other.get(n).applyDamage(damage);
+    restoreSpecial(2);
+
+    return this + " attacked " + other.get(n).getName() + " for " + damage + " damage! " + this + " gained 2 Rage";
   }
 
   public String specialAttack(ArrayList<Adventurer> other, int n) {
