@@ -111,4 +111,8 @@ public abstract class Adventurer{
   public String getStatus() {
     return statusEffect;
   }
+
+  public String bleed() {
+    return this + " is bleeding! " + this + " lost 2 HP.";
+  }
 }
