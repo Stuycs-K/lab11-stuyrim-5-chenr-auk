@@ -117,8 +117,11 @@ public abstract class Adventurer{
   public void bleed() {
     if (this.getStatus().equals("bleed") && statusTurns > 0) {
       this.applyDamage(2);
+      statusTurns--;
       System.out.println( this + " is bleeding! " + this + " lost 2 HP.");
     }
-
+    else {
+      return;
+    }
   }
 }
