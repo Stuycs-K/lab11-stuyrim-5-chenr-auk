@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class CodeWarrior extends Adventurer{
   int caffeine, caffeineMax;
   String preferredLanguage;
@@ -52,11 +54,11 @@ public class CodeWarrior extends Adventurer{
   /*Deal 3-12 damage to opponent, only if caffeine is high enough.
   *Reduces caffeine by 8.
   */
-  public String specialAttack(Adventurer other){
+  public String specialAttack(ArrayList<Adventurer> other, int n){
     if(getSpecial() >= 8){
       setSpecial(getSpecial()-8);
       int damage = (int)(Math.random()*5+Math.random()*5)+3;
-      other.applyDamage(damage);
+      other.get(n).applyDamage(damage);
       return this + " used their "+preferredLanguage+
       " skills to hack the matrix. "+
       " This glitched out "+other+" dealing "+ damage +" points of damage.";
