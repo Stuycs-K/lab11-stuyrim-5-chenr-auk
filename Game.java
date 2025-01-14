@@ -126,8 +126,10 @@ public class Game{
 
   public static String userInput(Scanner in){
       //Move cursor to prompt location
+      Text.go(80, 0);
 
       //show cursor
+      Text.showCursor();
 
       String input = in.nextLine();
 
