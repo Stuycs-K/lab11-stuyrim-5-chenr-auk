@@ -31,15 +31,17 @@ public class Game{
       drawText("|", j, 1);
       drawText("|", j, 81);
 
+      // borders separating enemies
       if (j < 6 && j > 1) {
         drawText("|", j, 27);
         drawText("|", j, 53);
       }
 
+      // borders separating allies
       if (j < 26 && j > 21) {
         drawText("|", j, 20);
-        drawText("|", j, 39);
-        drawText("|", j, 61);
+        drawText("|", j, 40);
+        drawText("|", j, 60);
       }
     }
 
@@ -110,11 +112,10 @@ public class Game{
     * ***THIS ROW INTENTIONALLY LEFT BLANK***
     */
     public static void drawParty(ArrayList<Adventurer> party,int startRow){
-      String tab = "      ";
       /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
       //YOUR CODE HERE
       for (int i = 0; i < party.size(); i++) {
-        // TextBox
+        drawText(null, startRow, startRow);
       }
       /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
     }
