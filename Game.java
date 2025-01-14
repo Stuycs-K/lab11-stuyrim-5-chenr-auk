@@ -31,9 +31,15 @@ public class Game{
       drawText("|", j, 1);
       drawText("|", j, 81);
 
-      if (j < 6 && j > 1 || j > 21 && j < 26) {
+      if (j < 6 && j > 1) {
         drawText("|", j, 27);
         drawText("|", j, 53);
+      }
+
+      if (j < 26 && j > 21) {
+        drawText("|", j, 20);
+        drawText("|", j, 39);
+        drawText("|", j, 61);
       }
     }
 
