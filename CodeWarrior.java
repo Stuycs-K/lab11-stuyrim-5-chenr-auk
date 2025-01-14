@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class CodeWarrior extends Adventurer{
   int caffeine, caffeineMax;
   String preferredLanguage;
@@ -41,9 +43,9 @@ public class CodeWarrior extends Adventurer{
   }
 
   /*Deal 2-7 damage to opponent, restores 2 caffeine*/
-  public String attack(Adventurer other){
+  public String attack(ArrayList<Adventurer> other, int n){
     int damage = (int)(Math.random()*6)+2;
-    other.applyDamage(damage);
+    other.get(n).applyDamage(damage);
     restoreSpecial(2);
     return this + " attacked "+ other + " and dealt "+ damage +
     " points of damage. They then take a sip of their coffee.";
@@ -52,23 +54,23 @@ public class CodeWarrior extends Adventurer{
   /*Deal 3-12 damage to opponent, only if caffeine is high enough.
   *Reduces caffeine by 8.
   */
-  public String specialAttack(Adventurer other){
+  public String specialAttack(ArrayList<Adventurer> other, int n){
     if(getSpecial() >= 8){
       setSpecial(getSpecial()-8);
       int damage = (int)(Math.random()*5+Math.random()*5)+3;
-      other.applyDamage(damage);
+      other.get(n).applyDamage(damage);
       return this + " used their "+preferredLanguage+
       " skills to hack the matrix. "+
       " This glitched out "+other+" dealing "+ damage +" points of damage.";
     }else{
-      return "Not enough caffeine to use the ultimate code. Instead "+attack(other);
+      return "Not enough caffeine to use the ultimate code. Instead "+attack(other, n);
     }
 
   }
   /*Restores 5 special to other*/
-  public String support(Adventurer other){
+  public String support(ArrayList<Adventurer> other, int n){
     return "Gives a coffee to "+other+" and restores "
-    + other.restoreSpecial(5)+" "+other.getSpecialName();
+    + other.get(n).restoreSpecial(5)+" "+other.get(n).getSpecialName();
   }
   /*Restores 6 special and 1 hp to self.*/
   public String support(){
