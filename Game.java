@@ -15,17 +15,28 @@ public class Game{
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     //YOUR CODE HERE
 
-    // top border
+    // horizontal borders
     System.out.print ("\033[;36m");
     for (int i = 1; i < 81; i++) {
-      drawText("=", 1, i);
-      drawText("=", 31, i);
+      drawText("=", 1, i);  // top
+      drawText("=", 31, i); // bottom
+
+      drawText("=", 6,i); // border for enemy list and prints
+      drawText("=", 21,i); // border between ally list and prints
+      drawText("=", 26,i); // border between ally list and user input
+      
     }
-    // bottom border
+    // vertical border
     for (int j = 1; j < 32; j++) {
       drawText("|", j, 1);
       drawText("|", j, 81);
+
+      if (j < 6 && j > 1 || j > 21 && j < 26) {
+        drawText("|", j, 27);
+        drawText("|", j, 53);
+      }
     }
+
     drawParty(null, BORDER_BACKGROUND);
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
   }
@@ -93,11 +104,11 @@ public class Game{
     * ***THIS ROW INTENTIONALLY LEFT BLANK***
     */
     public static void drawParty(ArrayList<Adventurer> party,int startRow){
-
+      String tab = "      ";
       /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
       //YOUR CODE HERE
       for (int i = 0; i < party.size(); i++) {
-
+        // TextBox
       }
       /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
     }
