@@ -112,7 +112,11 @@ public abstract class Adventurer{
     return statusEffect;
   }
 
-  public String bleed() {
-    return this + " is bleeding! " + this + " lost 2 HP.";
+  public void bleed() {
+    if (this.getStatus().equals("bleed")) {
+      this.applyDamage(2);
+      System.out.println( this + " is bleeding! " + this + " lost 2 HP.");
+    }
+
   }
 }
