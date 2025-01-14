@@ -16,6 +16,7 @@ public class Game{
     //YOUR CODE HERE
 
     // top border
+    System.out.print ("\033[;36m");
     for (int i = 1; i < 81; i++) {
       drawText("=", 1, i);
       drawText("=", 31, i);
@@ -52,9 +53,11 @@ public class Game{
   public static void TextBox(int row, int col, int width, int height, String text){
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     //YOUR CODE HERE
-    while (col < height) {
+    while (row < row + height) {
       while (text.length() > width) {
-        
+        drawText(text.substring(0, width), row, col);
+        text = text.substring(width);
+        row++;
       }
     }
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
@@ -66,7 +69,7 @@ public class Game{
     //return a random adventurer (choose between all available subclasses)
     //feel free to overload this method to allow specific names/stats.
     public static Adventurer createRandomAdventurer(){
-      int chooser = (int)Math.random() * 2;
+      int chooser = (int) Math.random() * 2;
       if (chooser == 0) {
         return new Archmage();
       }
@@ -93,6 +96,9 @@ public class Game{
 
       /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
       //YOUR CODE HERE
+      for (int i = 0; i < party.size(); i++) {
+
+      }
       /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
     }
 
