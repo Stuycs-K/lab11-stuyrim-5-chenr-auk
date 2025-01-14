@@ -5,6 +5,7 @@ public abstract class Adventurer{
   private String name;
   private int HP,maxHP;
   private String statusEffect;
+  private int statusTurns;
 
   //Abstract methods are meant to be implemented in child classes.
   /*
@@ -104,8 +105,9 @@ public abstract class Adventurer{
     this.name = s;
   }
 
-  public void setStatus(String s) {
+  public void setStatus(String s, int turnCount) {
     statusEffect = s;
+    statusTurns = turnCount;
   }
 
   public String getStatus() {
@@ -113,7 +115,7 @@ public abstract class Adventurer{
   }
 
   public void bleed() {
-    if (this.getStatus().equals("bleed")) {
+    if (this.getStatus().equals("bleed") && statusTurns > 0) {
       this.applyDamage(2);
       System.out.println( this + " is bleeding! " + this + " lost 2 HP.");
     }
