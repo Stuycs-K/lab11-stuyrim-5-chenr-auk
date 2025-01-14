@@ -21,6 +21,8 @@ Implementation of Classes :x:
 
 Theme :x:
 
+Game :x:
+
 ## Adventurer Subclasses
 
 ### Swordsman 
