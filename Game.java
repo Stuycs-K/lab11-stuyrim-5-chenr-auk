@@ -77,22 +77,18 @@ public class Game{
     int theRow = row;
 
     while (!str.equals("") && theRow < row + height) {
-      if (width > str.length()-1) {
+      if (width > str.length()) {
         partial = str.substring(0);
+        drawText(partial, row, col);
+        str = "";
+        row++;
       }
       else {
         partial = str.substring(0, width);
-      }
-
-      drawText(partial, row, col);
-
-      if (width > str.length()) {
-        str = "";
-      }
-      else {
+        drawText(partial, row, col);
         str = str.substring(width);
-      }
-      row++;
+        row++;
+      }      
     } 
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
