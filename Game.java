@@ -83,11 +83,19 @@ public class Game{
 
     // Raymond's Attempt
     String str = text;
+    String partial = " ";
     int theRow = row;
 
     while (!str.equals("") && theRow < row + height) {
-      String partial = str.substring(0, width);
+      if (width > str.length()) {
+        partial = str.substring(0);
+      }
+      else {
+        partial = str.substring(0, width);
+      }
+
       drawText(partial, row, col);
+
       if (width > str.length()) {
         str = "";
       }
