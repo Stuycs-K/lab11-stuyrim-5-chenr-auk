@@ -71,23 +71,13 @@ public class Game{
   */
   public static void TextBox(int row, int col, int width, int height, String text){
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    //YOUR CODE HERE
-    // while (row < row + height) {
-    //   while (text.length() > width) {
-    //     drawText(text.substring(0, width), row, col);
-    //     text = text.substring(width);
-    //     row++;
-    //   }
-    // }
-    // /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
-    // Raymond's Attempt
     String str = text;
     String partial = " ";
     int theRow = row;
 
     while (!str.equals("") && theRow < row + height) {
-      if (width > str.length()) {
+      if (width > str.length()-1) {
         partial = str.substring(0);
       }
       else {
@@ -104,6 +94,8 @@ public class Game{
       }
       row++;
     } 
+    /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
   }
 
 
