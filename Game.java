@@ -77,19 +77,28 @@ public class Game{
     String partial = " ";
     int theRow = row;
 
-    while (!str.equals("") && theRow < row + height) {
-      if (width > str.length()) {
-        partial = str.substring(0);
-        drawText(partial, row, col);
-        str = "";
-        row++;
+    while (theRow < row + height) {
+      if (!str.equals("")) {
+        if (width > str.length()) {
+          partial = str.substring(0);
+          drawText(partial, row, col);
+          str = "";
+          row++;
+        }
+        else {
+          partial = str.substring(0, width);
+          drawText(partial, row, col);
+          str = str.substring(width);
+          row++;
+        }    
       }
+
       else {
-        partial = str.substring(0, width);
-        drawText(partial, row, col);
-        str = str.substring(width);
-        row++;
-      }      
+        for (int theRow; theRow < row+height; theRow++) {
+          
+        }
+      }
+        
     } 
 
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
