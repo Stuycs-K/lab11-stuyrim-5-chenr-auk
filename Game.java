@@ -72,14 +72,30 @@ public class Game{
   public static void TextBox(int row, int col, int width, int height, String text){
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     //YOUR CODE HERE
-    while (row < row + height) {
-      while (text.length() > width) {
-        drawText(text.substring(0, width), row, col);
-        text = text.substring(width);
-        row++;
+    // while (row < row + height) {
+    //   while (text.length() > width) {
+    //     drawText(text.substring(0, width), row, col);
+    //     text = text.substring(width);
+    //     row++;
+    //   }
+    // }
+    // /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+    // Raymond's Attempt
+    String str = text;
+    int theRow = row;
+
+    while (!str.equals("") && theRow < row + height) {
+      String partial = str.substring(0, width);
+      drawText(partial, row, col);
+      if (width > str.length()) {
+        str = "";
       }
-    }
-    /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+      else {
+        str = str.substring(width);
+      }
+      row++;
+    } 
   }
 
 
