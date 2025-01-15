@@ -31,21 +31,13 @@ public class Game{
       drawText("|", j, 1);
       drawText("|", j, 81);
 
-      // borders separating enemies
-      if (j < 6 && j > 1) {
-        drawText("|", j, 27);
-        drawText("|", j, 53);
-      }
-
       // borders separating allies
-      if (j < 26 && j > 21) {
+      if (j < 26 && j > 21 || j < 6 && j > 1) {
         drawText("|", j, 20);
         drawText("|", j, 40);
         drawText("|", j, 60);
       }
     }
-
-    drawParty(null, BORDER_BACKGROUND);
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
   }
 
@@ -114,9 +106,6 @@ public class Game{
     public static void drawParty(ArrayList<Adventurer> party,int startRow){
       /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
       //YOUR CODE HERE
-      for (int i = 0; i < party.size(); i++) {
-        drawText(null, startRow, startRow);
-      }
       /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
     }
 
@@ -138,19 +127,22 @@ public class Game{
   //Display the party and enemies
   //Do not write over the blank areas where text will appear.
   //Place the cursor at the place where the user will by typing their input at the end of this method.
-  public static void drawScreen(){
+  public static void drawScreen(ArrayList<Adventurer> allies, ArrayList<Adventurer> enemies){
 
     drawBackground();
 
     //draw player party
+    Text.go(21, 2);
+    drawParty(allies, 21);
 
     //draw enemy party
-
+    Text.go(2,2);
+    drawParty(enemies, 2);
   }
 
   public static String userInput(Scanner in){
       //Move cursor to prompt location
-      Text.go(80, 0);
+      Text.go(27, 2);
 
       //show cursor
       Text.showCursor();
@@ -207,7 +199,7 @@ public class Game{
     //Draw the window border
 
     //You can add parameters to draw screen!
-    drawScreen();//initial state.
+    drawScreen(party, enemies);//initial state.
 
     //Main loop
 
@@ -293,7 +285,7 @@ public class Game{
       }
 
       //display the updated screen after input has been processed.
-      drawScreen();
+      drawScreen(party, enemies);
 
 
     }//end of main game loop
