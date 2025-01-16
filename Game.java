@@ -68,7 +68,10 @@ public class Game{
 
     while (theRow < row + height) {
       if (text.equals("")) { // if there is no more to print
-        System.out.println(" ");
+        for (int i=0; i<width; i++) {
+          partial += " ";
+        }
+        drawText(partial, theRow, col);
       }
       else { // if there is still more to print
         if (text.length() <= width) {
