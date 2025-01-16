@@ -48,6 +48,7 @@ public class Game{
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     Text.go(startRow, startCol);
     System.out.print(s);
+    Text.go(startRow+1, 0);
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
   }
 
@@ -63,15 +64,35 @@ public class Game{
   */
   public static void TextBox(int row, int col, int width, int height, String text){
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    //YOUR CODE HERE
-    while (row < row + height) {
-      while (text.length() > width) {
-        drawText(text.substring(0, width), row, col);
-        text = text.substring(width);
-        row++;
+
+    String partial = " ";
+    int theRow = row; // theRow = the current row the cursor is at
+
+    while (theRow < row + height) {
+      if (text.equals("")) { // if there is no more to print
+        // STILL NEED TO DO THIS
       }
+      else { // if there is still more to print
+        if (text.length() <= width) {
+          partial = text.substring(0); 
+          for (int i=0; i<partial.length()-width; i++) {
+            // add spaces to the end of the last line of characters 
+            partial = partial + " ";
+          }
+          drawText(partial, theRow, col);
+          theRow++;
+          text = "";
+        }
+        else {
+          partial = text.substring(0, width);
+          drawText(partial, theRow, col);
+          theRow++;
+          text = text.substring(width);
+        }
     }
+
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
   }
 
 
