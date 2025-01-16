@@ -73,12 +73,14 @@ public class Game{
   public static void TextBox(int row, int col, int width, int height, String text){
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
-    String partial = " ";
+    String partial = "";
     int theRow = row; // theRow = the current row the cursor is at
 
     while (theRow < row + height) {
+
       if (text.equals("")) { // if there is no more to print
-        // STILL NEED TO DO THIS
+        System.out.println(" ");
+        theRow++;
       }
       else { // if there is still more to print
         if (text.length() <= width) {
@@ -97,10 +99,10 @@ public class Game{
           theRow++;
           text = text.substring(width);
         }
+      }
     }
 
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-
   }
 
 
