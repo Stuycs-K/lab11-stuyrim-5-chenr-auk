@@ -67,10 +67,8 @@ public class Game{
     int theRow = row; // theRow = the current row the cursor is at
 
     while (theRow < row + height) {
-
       if (text.equals("")) { // if there is no more to print
         System.out.println(" ");
-        theRow++;
       }
       else { // if there is still more to print
         if (text.length() <= width) {
@@ -80,16 +78,15 @@ public class Game{
             partial = partial + " ";
           }
           drawText(partial, theRow, col);
-          theRow++;
           text = "";
         }
         else {
           partial = text.substring(0, width);
           drawText(partial, theRow, col);
-          theRow++;
           text = text.substring(width);
         }
       }
+      theRow++;
     }
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
   }
