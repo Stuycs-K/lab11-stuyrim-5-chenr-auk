@@ -114,14 +114,6 @@ public class Game{
         col += 20;
         counter++;
       }
-      // for (int i = 0; i < party.size(); i++) {
-      //   drawText(party.get(i).getName(), startRow, col);
-      //   col += 19;
-      // }
-      // for (int j = 0; j < party.size(); j++) {
-      //   drawText("HP: "+party.get(j).getHP(), startRow + 1, col);
-      //   col += 19;
-      // }
       /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
     }
 
@@ -156,7 +148,7 @@ public class Game{
 
   public static String userInput(Scanner in){
       //Move cursor to prompt location
-      Text.go(27, 2);
+      Text.go(28, 2);
 
       //show cursor
       Text.showCursor();
@@ -219,6 +211,8 @@ public class Game{
 
     //display this prompt at the start of the game.
     String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+    drawText(preprompt, 27, 2);
+    
 
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
       //Read user input
