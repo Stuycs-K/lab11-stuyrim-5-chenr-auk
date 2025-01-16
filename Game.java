@@ -94,8 +94,12 @@ public class Game{
       }
 
       else {
-        for (int theRow; theRow < row+height; theRow++) {
-          
+        for (int theRowAgain = theRow; theRowAgain < row+height; theRowAgain++) {
+          for (int i=0; i<width-1; i++) {
+            System.out.print(" ");
+          }
+          theRow++;
+          System.out.println(" ");
         }
       }
         
