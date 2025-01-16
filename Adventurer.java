@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public abstract class Adventurer{
   private String name;
   private int HP,maxHP;
-  private String statusEffect;
+  private String statusEffect = "none";
   private int statusTurns;
 
   //Abstract methods are meant to be implemented in child classes.
@@ -121,7 +121,7 @@ public abstract class Adventurer{
       return this + " is bleeding! " + this + " lost 2 HP.";
     }
     else {
-      return null;
+      return getStatus();
     }
   }
 
@@ -131,7 +131,7 @@ public abstract class Adventurer{
       return this + " is frozen!";
     }
     else {
-      return null;
+      return getStatus();
     }
   }
 }
