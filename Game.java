@@ -33,9 +33,9 @@ public class Game{
 
       // borders separating allies
       if (j < 26 && j > 21 || j < 6 && j > 1) {
-        drawText("|", j, 20);
-        drawText("|", j, 40);
-        drawText("|", j, 60);
+        drawText("|", j, 21);
+        drawText("|", j, 41);
+        drawText("|", j, 61);
       }
     }
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
@@ -75,8 +75,6 @@ public class Game{
   }
 
 
-
-
     //return a random adventurer (choose between all available subclasses)
     //feel free to overload this method to allow specific names/stats.
     public static Adventurer createRandomAdventurer(){
@@ -106,6 +104,24 @@ public class Game{
     public static void drawParty(ArrayList<Adventurer> party,int startRow){
       /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
       //YOUR CODE HERE
+      int col = 2;
+      int counter = 0; 
+      while (counter < party.size()) {
+        drawText(party.get(counter).getName(), startRow, col);
+        drawText("HP: "+party.get(counter).getHP(), startRow + 1, col);
+        drawText("" + party.get(counter).getSpecialName() + ": " + party.get(counter).getSpecial(), startRow + 2, col);
+        drawText("Status: " + party.get(counter).getStatus(), startRow + 3, col);
+        col += 20;
+        counter++;
+      }
+      // for (int i = 0; i < party.size(); i++) {
+      //   drawText(party.get(i).getName(), startRow, col);
+      //   col += 19;
+      // }
+      // for (int j = 0; j < party.size(); j++) {
+      //   drawText("HP: "+party.get(j).getHP(), startRow + 1, col);
+      //   col += 19;
+      // }
       /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
     }
 
@@ -132,11 +148,9 @@ public class Game{
     drawBackground();
 
     //draw player party
-    Text.go(21, 2);
-    drawParty(allies, 21);
+    drawParty(allies, 22);
 
     //draw enemy party
-    Text.go(2,2);
     drawParty(enemies, 2);
   }
 
