@@ -31,21 +31,13 @@ public class Game{
       drawText("|", j, 1);
       drawText("|", j, 81);
 
-      // borders separating enemies
-      if (j < 6 && j > 1) {
-        drawText("|", j, 27);
-        drawText("|", j, 53);
-      }
-
       // borders separating allies
-      if (j < 26 && j > 21) {
-        drawText("|", j, 20);
-        drawText("|", j, 40);
-        drawText("|", j, 60);
+      if (j < 26 && j > 21 || j < 6 && j > 1) {
+        drawText("|", j, 21);
+        drawText("|", j, 41);
+        drawText("|", j, 61);
       }
     }
-
-    drawParty(null, BORDER_BACKGROUND);
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
   }
 
@@ -56,7 +48,6 @@ public class Game{
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     Text.go(startRow, startCol);
     System.out.print(s);
-    Text.go(startRow+1, 0);
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
   }
 
@@ -72,7 +63,6 @@ public class Game{
   */
   public static void TextBox(int row, int col, int width, int height, String text){
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-
     String partial = "";
     int theRow = row; // theRow = the current row the cursor is at
 
@@ -101,11 +91,8 @@ public class Game{
         }
       }
     }
-
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
   }
-
-
 
 
     //return a random adventurer (choose between all available subclasses)
@@ -137,8 +124,15 @@ public class Game{
     public static void drawParty(ArrayList<Adventurer> party,int startRow){
       /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
       //YOUR CODE HERE
-      for (int i = 0; i < party.size(); i++) {
-        drawText(null, startRow, startRow);
+      int col = 2;
+      int counter = 0; 
+      while (counter < party.size()) {
+        drawText(party.get(counter).getName(), startRow, col);
+        drawText("HP: "+party.get(counter).getHP(), startRow + 1, col);
+        drawText("" + party.get(counter).getSpecialName() + ": " + party.get(counter).getSpecial(), startRow + 2, col);
+        drawText("Status: " + party.get(counter).getStatus(), startRow + 3, col);
+        col += 20;
+        counter++;
       }
       /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
     }
@@ -161,19 +155,20 @@ public class Game{
   //Display the party and enemies
   //Do not write over the blank areas where text will appear.
   //Place the cursor at the place where the user will by typing their input at the end of this method.
-  public static void drawScreen(){
+  public static void drawScreen(ArrayList<Adventurer> allies, ArrayList<Adventurer> enemies){
 
     drawBackground();
 
     //draw player party
+    drawParty(allies, 22);
 
     //draw enemy party
-
+    drawParty(enemies, 2);
   }
 
   public static String userInput(Scanner in){
       //Move cursor to prompt location
-      Text.go(80, 0);
+      Text.go(28, 2);
 
       //show cursor
       Text.showCursor();
@@ -230,12 +225,14 @@ public class Game{
     //Draw the window border
 
     //You can add parameters to draw screen!
-    drawScreen();//initial state.
+    drawScreen(party, enemies);//initial state.
 
     //Main loop
 
     //display this prompt at the start of the game.
     String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+    drawText(preprompt, 27, 2);
+    
 
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
       //Read user input
@@ -316,7 +313,7 @@ public class Game{
       }
 
       //display the updated screen after input has been processed.
-      drawScreen();
+      drawScreen(party, enemies);
 
 
     }//end of main game loop

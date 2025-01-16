@@ -17,7 +17,7 @@ public class Archmage extends Adventurer{
       }
 
     public String getSpecialName() {
-        return "mana";
+        return "Mana";
     }
  
     public int getSpecial() {
