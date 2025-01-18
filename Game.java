@@ -273,7 +273,7 @@ public class Game{
 
           whichTeammate = Integer.parseInt(input.substring(input.length()-1));
 
-          TextBox(15, 2, 40, 5,party.get(whichPlayer).specialAttack(enemies, whichOpponent-1));
+          TextBox(15, 2, 40, 5,party.get(whichPlayer).support(party, whichTeammate-1));
 
           //YOUR CODE HERE
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
