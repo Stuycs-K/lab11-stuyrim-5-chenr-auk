@@ -33,9 +33,11 @@ public class Game{
 
       // borders separating allies
       if (j < 26 && j > 21 || j < 6 && j > 1) {
-        drawText("|", j, 21);
-        drawText("|", j, 41);
-        drawText("|", j, 61);
+        // drawText("|", j, 21);
+        // drawText("|", j, 41);
+        // drawText("|", j, 61);
+        drawText("|", j, 27);
+        drawText("|", j, 54);
       }
     }
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
