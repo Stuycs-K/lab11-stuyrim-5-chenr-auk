@@ -249,10 +249,11 @@ public class Game{
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
           drawText("                          ", 28, 2); // to block out previous input
           drawText("                          ", 29, 2); // to block out invalid input text
-          party.get(whichPlayer).attack(enemies, whichOpponent);
+          whichOpponent = Integer.parseInt(input.substring(input.length()-1));
+          party.get(whichPlayer).attack(enemies, whichOpponent-1);
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
-        else if(input.startsWith("special") || input.startsWith("sp")){
+        else if(input.startsWith("special ") || input.startsWith("sp ")){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
           drawText("                          ", 28, 2); // to block out previous input
           drawText("                          ", 29, 2); // to block out invalid input text
