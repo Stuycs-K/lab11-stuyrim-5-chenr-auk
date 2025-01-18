@@ -4,10 +4,19 @@ public class Swordsman extends Adventurer {
   int HP;
   int Rage, maxRage;
 
-  public Swordsman() {
+  public Swordsman(String name, int HP) {
+    super(name, HP);
     HP = 30;
     Rage = 0;
     maxRage = 5;
+  }
+
+  public Swordsman(String name) {
+    this(name, 30);
+  }
+
+  public Swordsman() {
+    this("Swordsman");
   }
 
   public String getSpecialName() {
