@@ -271,6 +271,9 @@ public class Game{
           //YOUR CODE HERE
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
+        else if (input.startsWith("q") || input.startsWith("quit")) {
+          quit();
+        }
         else {
           drawText("                          ", 28, 2); // to block out previous input
           drawText("Invalid input, try again!", 29, 2);
