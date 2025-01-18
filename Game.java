@@ -250,7 +250,7 @@ public class Game{
           drawText("                          ", 28, 2); // to block out previous input
           drawText("                          ", 29, 2); // to block out invalid input text
           whichOpponent = Integer.parseInt(input.substring(input.length()-1));
-          party.get(whichPlayer).attack(enemies, whichOpponent-1);
+          TextBox(15, 2, 40, 5,party.get(whichPlayer).attack(enemies, whichOpponent-1));
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
         else if(input.startsWith("special ") || input.startsWith("sp ")){
