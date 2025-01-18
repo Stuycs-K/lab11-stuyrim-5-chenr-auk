@@ -33,9 +33,8 @@ public class Game{
 
       // borders separating allies
       if (j < 26 && j > 21 || j < 6 && j > 1) {
-        drawText("|", j, 21);
-        drawText("|", j, 41);
-        drawText("|", j, 61);
+        drawText("|", j, 27);
+        drawText("|", j, 53);
       }
     }
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
@@ -131,7 +130,7 @@ public class Game{
         drawText("HP: "+party.get(counter).getHP(), startRow + 1, col);
         drawText("" + party.get(counter).getSpecialName() + ": " + party.get(counter).getSpecial(), startRow + 2, col);
         drawText("Status: " + party.get(counter).getStatus(), startRow + 3, col);
-        col += 20;
+        col += 26;
         counter++;
       }
       /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
