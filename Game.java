@@ -232,6 +232,9 @@ public class Game{
     //display this prompt at the start of the game.
     String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
     drawText(preprompt, 27, 2);
+    TextBox(15, 2, 25, 5, "Attack: Sword Slash \n Deals 5-10 damage and has a 20% chance to apply BLEED for 2 turns");
+    TextBox(15, 28, 25, 5, "Special Attack: Lethal Strike \n [Requires 3 Rage] If an opponent has half HP or less, this attack will one shot them; if not, deal 10 damage guaranteed");
+    TextBox(15, 56, 25, 5, "Support: Sharpen \n Increases the damage of a team member by 1.5x for the next attack");
     
 
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
@@ -239,7 +242,7 @@ public class Game{
       input = userInput(in);
 
       //example debug statment
-      TextBox(24,2,1,78,"input: "+input+" partyTurn:"+partyTurn+ " whichPlayer="+whichPlayer+ " whichOpp="+whichOpponent);
+      // TextBox(24,2,1,78,"input: "+input+" partyTurn:"+partyTurn+ " whichPlayer="+whichPlayer+ " whichOpp="+whichOpponent);
 
       //display event based on last turn's input
       if(partyTurn){
