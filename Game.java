@@ -63,36 +63,36 @@ public class Game{
   */
   public static void TextBox(int row, int col, int width, int height, String text){
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    String partial = "";
+    String partial = " ";
     int theRow = row; // theRow = the current row the cursor is at
 
-    while (theRow < row + height) {
-      if (text.equals("")) { // if there is no more to print
-        for (int i=0; i<width; i++) {
-          partial += " ";
+    // clear the area first
+    for (int i=0; i<height; i++) {
+      for (int j=0; j<width; j++) {
+        drawText(partial, theRow+i, col+j);
+      }
+    }
+
+    // write the text
+    while (theRow < row + height && partial!="") {
+      if (text.length() <= width) {
+        partial = text.substring(0); 
+        for (int i=0; i<partial.length()-width; i++) {
+          // add spaces to the end of the last line of characters 
+          partial = partial + " ";
         }
         drawText(partial, theRow, col);
+        text = "";
       }
-      else { // if there is still more to print
-        if (text.length() <= width) {
-          partial = text.substring(0); 
-          for (int i=0; i<partial.length()-width; i++) {
-            // add spaces to the end of the last line of characters 
-            partial = partial + " ";
-          }
-          drawText(partial, theRow, col);
-          text = "";
-        }
-        else {
-          partial = text.substring(0, width);
-          drawText(partial, theRow, col);
-          text = text.substring(width);
-        }
+      else {
+        partial = text.substring(0, width);
+        drawText(partial, theRow, col);
+        text = text.substring(width);
       }
       theRow++;
     }
-    /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
   }
+    /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 
     //return a random adventurer (choose between all available subclasses)
