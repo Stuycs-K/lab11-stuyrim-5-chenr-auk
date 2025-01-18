@@ -219,6 +219,7 @@ public class Game{
     boolean partyTurn = true;
     int whichPlayer = 0;
     int whichOpponent = 0;
+    int whichTeammate = 0;
     int turn = 0;
     String input = "";//blank to get into the main loop.
     Scanner in = new Scanner(System.in);
@@ -257,7 +258,9 @@ public class Game{
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
           drawText("                          ", 28, 2); // to block out previous input
           drawText("                          ", 29, 2); // to block out invalid input text
+          whichOpponent = Integer.parseInt(input.substring(input.length()-1));
 
+          TextBox(15, 2, 40, 5,party.get(whichPlayer).specialAttack(enemies, whichOpponent-1));
           //YOUR CODE HERE
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
@@ -267,6 +270,10 @@ public class Game{
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
           drawText("                          ", 28, 2); // to block out previous input
           drawText("                          ", 29, 2); // to block out invalid input text
+
+          whichTeammate = Integer.parseInt(input.substring(input.length()-1));
+
+          TextBox(15, 2, 40, 5,party.get(whichPlayer).specialAttack(enemies, whichOpponent-1));
 
           //YOUR CODE HERE
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
