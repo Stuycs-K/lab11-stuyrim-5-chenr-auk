@@ -250,10 +250,17 @@ public class Game{
     //display this prompt at the start of the game.
     String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
     drawText(preprompt, 27, 2);
-    TextBox(15, 2, 25, 5, "Attack: Sword Slash \n Deals 5-10 damage and has a 20% chance to apply BLEED for 2 turns");
-    TextBox(15, 28, 25, 5, "Special Attack: Lethal Strike \n [Requires 3 Rage] If an opponent has half HP or less, this attack will one shot them; if not, deal 10 damage guaranteed");
-    TextBox(15, 56, 25, 5, "Support: Sharpen \n Increases the damage of a team member by 1.5x for the next attack");
-    
+    if (party.get(whichPlayer).getName() == "Archmage") {
+      TextBox(15, 2, 24, 6, "ATTACK: SWORD SLASH deals 5-10 damage and has a 20% chance to apply BLEED for 2 turns");
+      TextBox(15, 28, 24, 6, "SPECIAL ATTACK: LETHAL STRIKE [Requires 3 Rage] kills opponent if they have 1/2 HP or less; if not, deals 10 damage");
+      TextBox(15, 54, 24, 6, "SUPPORT: SHARPEN increases the damage of a team member by 1.5x for the next attack");
+    }
+    else if (party.get(whichPlayer).getName() == "Swordsman") {
+      TextBox(15, 2, 24, 6, "ATTACK: SWORD SLASH deals 5-10 damage and has a 20% chance to apply BLEED for 2 turns");
+      TextBox(15, 28, 24, 6, "SPECIAL ATTACK: LETHAL STRIKE [Requires 3 Rage] kills opponent if they have 1/2 HP or less; if not, deals 10 damage");
+      TextBox(15, 54, 24, 6, "SUPPORT: SHARPEN increases the damage of a team member by 1.5x for the next attack");
+
+    }
 
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
       //Read user input
@@ -264,7 +271,18 @@ public class Game{
 
       //display event based on last turn's input
       if(partyTurn){
+        if (party.get(whichPlayer).getName() == "Archmage") {
+          TextBox(15, 2, 24, 6, "ATTACK: SWORD SLASH deals 5-10 damage and has a 20% chance to apply BLEED for 2 turns");
+          TextBox(15, 28, 24, 6, "SPECIAL ATTACK: LETHAL STRIKE [Requires 3 Rage] kills opponent if they have 1/2 HP or less; if not, deals 10 damage");
+          TextBox(15, 54, 24, 6, "SUPPORT: SHARPEN increases the damage of a team member by 1.5x for the next attack");
+        }
+        else if (party.get(whichPlayer).getName() == "Swordsman") {
+          TextBox(15, 2, 24, 6, "ATTACK: SWORD SLASH deals 5-10 damage and has a 20% chance to apply BLEED for 2 turns");
+          TextBox(15, 28, 24, 6, "SPECIAL ATTACK: LETHAL STRIKE [Requires 3 Rage] kills opponent if they have 1/2 HP or less; if not, deals 10 damage");
+          TextBox(15, 54, 24, 6, "SUPPORT: SHARPEN increases the damage of a team member by 1.5x for the next attack");
 
+        }
+        
         //Process user input for the last Adventurer:
         if(input.startsWith("attack ") || input.startsWith("a ")){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
