@@ -73,6 +73,7 @@ public class Game{
         drawText(partial, theRow+i, col+j);
       }
     }
+    Text.go(row, col);
 
     // create an arraylist toPrint that is the words that are to be displayed
     ArrayList<String>toPrint = new ArrayList<String>();
@@ -81,14 +82,18 @@ public class Game{
       toPrint.add(elem);
     }
 
+    //int counter = 1;
+
     // loop that displays the words
-    while (toPrint.size() > 0 && theRow <= row + height - 1) { // while there are words to be displayed
-      String printOut = "";
-      while (printOut.length() < width && toPrint.size()>0) { 
-        // add words to printOut until it gets longer than the width
+    while (toPrint.size() > 0 && theRow <= row + height-1) { // while there are words to be displayed
+      // System.out.println("count number " + counter);
+      // counter++;
+      partial = "";
+      while (partial.length() < width && toPrint.size()>0) { 
+        // add words to partial until it gets longer than the width
         // and remove the words from toPrint
-        if (printOut.length() + toPrint.get(0).length() < width) { 
-          printOut += toPrint.get(0) + " ";
+        if (partial.length() + toPrint.get(0).length() <= width) { 
+          partial += toPrint.get(0) + " ";
           toPrint.remove(0);
         }
         // there is no case for when the word is longer than the width, 
@@ -98,9 +103,11 @@ public class Game{
         }
       }
       // print the line
-      drawText(printOut, theRow, col);
+      drawText(partial, theRow, col);
       theRow++;
     }
+
+    Text.go(theRow+1, 0);
   }
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
