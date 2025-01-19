@@ -82,17 +82,19 @@ public class Game{
     }
 
     // loop that displays the words
-    while (toPrint.size() != 0) { // while there are words to be displayed
+    while (toPrint.size() > 0 && theRow <= row + height - 1) { // while there are words to be displayed
       String printOut = "";
-      while (printOut.length() < width) { 
+      while (printOut.length() < width && toPrint.size()>0) { 
         // add words to printOut until it gets longer than the width
         // and remove the words from toPrint
         if (printOut.length() + toPrint.get(0).length() < width) { 
           printOut += toPrint.get(0) + " ";
           toPrint.remove(0);
         }
+        // there is no case for when the word is longer than the width, 
+        // but that won't happen when we make this game anyways
         else {
-          printOut += " ";
+          break;
         }
       }
       // print the line
