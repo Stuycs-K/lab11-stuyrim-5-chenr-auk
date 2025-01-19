@@ -328,9 +328,10 @@ public class Game{
           //This is a player turn.
           //Decide where to draw the following prompt:
           String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
-
-
-        }else{
+          drawText(prompt, 27, 2);
+        }
+        
+        else{
           //This is after the player's turn, and allows the user to see the enemy turn
           //Decide where to draw the following prompt:
           String prompt = "press enter to see monster's turn";
@@ -339,7 +340,9 @@ public class Game{
           whichOpponent = 0;
         }
         //done with one party member
-      }else{
+      }
+      
+      else{
         //not the party turn!
 
 
