@@ -74,13 +74,31 @@ public class Game{
       }
     }
 
+    // create an arraylist toPrint that is the words that are to be displayed
     ArrayList<String>toPrint = new ArrayList<String>();
     String[] temp = text.split(" ");
     for (String elem : temp) {
       toPrint.add(elem);
     }
 
-    drawText(toPrint.toString(), row, col);
+    // loop that displays the words
+    while (toPrint.size() != 0) { // while there are words to be displayed
+      String printOut = "";
+      while (printOut.length() < width) { 
+        // add words to printOut until it gets longer than the width
+        // and remove the words from toPrint
+        if (printOut.length() + toPrint.get(0).length() < width) { 
+          printOut += toPrint.get(0) + " ";
+          toPrint.remove(0);
+        }
+        else {
+          printOut += " ";
+        }
+      }
+      // print the line
+      drawText(printOut, theRow, col);
+      theRow++;
+    }
   }
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
