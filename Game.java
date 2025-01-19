@@ -1,4 +1,6 @@
 import java.util.*;
+import java.util.ArrayList;
+
 public class Game{
   private static final int WIDTH = 80;
   private static final int HEIGHT = 30;
@@ -72,24 +74,13 @@ public class Game{
       }
     }
 
-    // write the text
-    while (theRow < row + height && partial!="") {
-      if (text.length() <= width) {
-        partial = text.substring(0); 
-        for (int i=0; i<partial.length()-width; i++) {
-          // add spaces to the end of the last line of characters 
-          partial = partial + " ";
-        }
-        drawText(partial, theRow, col);
-        text = "";
-      }
-      else {
-        partial = text.substring(0, width);
-        drawText(partial, theRow, col);
-        text = text.substring(width);
-      }
-      theRow++;
+    ArrayList<String>toPrint = new ArrayList<String>();
+    String[] temp = text.split(" ");
+    for (String elem : temp) {
+      toPrint.add(elem);
     }
+
+    drawText(toPrint.toString(), row, col);
   }
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
