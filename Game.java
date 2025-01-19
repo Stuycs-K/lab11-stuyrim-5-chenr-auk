@@ -250,16 +250,15 @@ public class Game{
     //display this prompt at the start of the game.
     String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
     drawText(preprompt, 27, 2);
-    if (party.get(whichPlayer).getName() == "Archmage") {
+    if (party.get(whichPlayer).getName() == "Sowrdsman") {
       TextBox(15, 2, 24, 6, "ATTACK: SWORD SLASH deals 5-10 damage and has a 20% chance to apply BLEED for 2 turns");
       TextBox(15, 28, 24, 6, "SPECIAL ATTACK: LETHAL STRIKE [Requires 3 Rage] kills opponent if they have 1/2 HP or less; if not, deals 10 damage");
       TextBox(15, 54, 24, 6, "SUPPORT: SHARPEN increases the damage of a team member by 1.5x for the next attack");
     }
-    else if (party.get(whichPlayer).getName() == "Swordsman") {
-      TextBox(15, 2, 24, 6, "ATTACK: SWORD SLASH deals 5-10 damage and has a 20% chance to apply BLEED for 2 turns");
-      TextBox(15, 28, 24, 6, "SPECIAL ATTACK: LETHAL STRIKE [Requires 3 Rage] kills opponent if they have 1/2 HP or less; if not, deals 10 damage");
-      TextBox(15, 54, 24, 6, "SUPPORT: SHARPEN increases the damage of a team member by 1.5x for the next attack");
-
+    else if (party.get(whichPlayer).getName() == "Archmage") {
+      TextBox(15, 2, 24, 6, "ATTACK: BLAST deals damage equal to half this Archmage's mana");
+      TextBox(15, 28, 24, 6, "SPECIAL ATTACK: FREEZE STORM [Requires 40 mana] freezes all opponents for two turns");
+      TextBox(15, 54, 24, 6, "SUPPORT: FORCE FIELD projects a shield that blocks 20 damage onto a team member");
     }
 
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
@@ -271,16 +270,15 @@ public class Game{
 
       //display event based on last turn's input
       if(partyTurn){
-        if (party.get(whichPlayer).getName() == "Archmage") {
+        if (party.get(whichPlayer).getName() == "Sowrdsman") {
           TextBox(15, 2, 24, 6, "ATTACK: SWORD SLASH deals 5-10 damage and has a 20% chance to apply BLEED for 2 turns");
           TextBox(15, 28, 24, 6, "SPECIAL ATTACK: LETHAL STRIKE [Requires 3 Rage] kills opponent if they have 1/2 HP or less; if not, deals 10 damage");
           TextBox(15, 54, 24, 6, "SUPPORT: SHARPEN increases the damage of a team member by 1.5x for the next attack");
         }
-        else if (party.get(whichPlayer).getName() == "Swordsman") {
+        else if (party.get(whichPlayer).getName() == "Archmage") {
           TextBox(15, 2, 24, 6, "ATTACK: BLAST deals damage equal to half this Archmage's mana");
           TextBox(15, 28, 24, 6, "SPECIAL ATTACK: FREEZE STORM [Requires 40 mana] freezes all opponents for two turns");
           TextBox(15, 54, 24, 6, "SUPPORT: FORCE FIELD projects a shield that blocks 20 damage onto a team member");
-
         }
         
         //Process user input for the last Adventurer:
