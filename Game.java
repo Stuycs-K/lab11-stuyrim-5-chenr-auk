@@ -277,9 +277,9 @@ public class Game{
           TextBox(15, 54, 24, 6, "SUPPORT: SHARPEN increases the damage of a team member by 1.5x for the next attack");
         }
         else if (party.get(whichPlayer).getName() == "Swordsman") {
-          TextBox(15, 2, 24, 6, "ATTACK: SWORD SLASH deals 5-10 damage and has a 20% chance to apply BLEED for 2 turns");
-          TextBox(15, 28, 24, 6, "SPECIAL ATTACK: LETHAL STRIKE [Requires 3 Rage] kills opponent if they have 1/2 HP or less; if not, deals 10 damage");
-          TextBox(15, 54, 24, 6, "SUPPORT: SHARPEN increases the damage of a team member by 1.5x for the next attack");
+          TextBox(15, 2, 24, 6, "ATTACK: BLAST deals damage equal to half this Archmage's mana");
+          TextBox(15, 28, 24, 6, "SPECIAL ATTACK: FREEZE STORM [Requires 40 mana] freezes all opponents for two turns");
+          TextBox(15, 54, 24, 6, "SUPPORT: FORCE FIELD projects a shield that blocks 20 damage onto a team member");
 
         }
         
@@ -289,7 +289,7 @@ public class Game{
           drawText("                          ", 28, 2); // to block out previous input
           drawText("                          ", 29, 2); // to block out invalid input text
           whichOpponent = Integer.parseInt(input.substring(input.length()-1));
-          TextBox(15, 2, 40, 5,party.get(whichPlayer).attack(enemies, whichOpponent-1));
+          TextBox(10, 2, 40, 5,party.get(whichPlayer).attack(enemies, whichOpponent-1));
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
         else if(input.startsWith("special ") || input.startsWith("sp ")){
@@ -298,7 +298,7 @@ public class Game{
           drawText("                          ", 29, 2); // to block out invalid input text
           whichOpponent = Integer.parseInt(input.substring(input.length()-1));
 
-          TextBox(15, 2, 40, 5,party.get(whichPlayer).specialAttack(enemies, whichOpponent-1));
+          TextBox(10, 2, 40, 5,party.get(whichPlayer).specialAttack(enemies, whichOpponent-1));
           //YOUR CODE HERE
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
@@ -311,7 +311,7 @@ public class Game{
 
           whichTeammate = Integer.parseInt(input.substring(input.length()-1));
 
-          TextBox(15, 2, 40, 5,party.get(whichPlayer).support(party, whichTeammate-1));
+          TextBox(10, 2, 40, 5,party.get(whichPlayer).support(party, whichTeammate-1));
 
           //YOUR CODE HERE
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
