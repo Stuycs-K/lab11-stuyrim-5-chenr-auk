@@ -145,9 +145,17 @@ public class Game{
       int counter = 0; 
       while (counter < party.size()) {
         drawText(party.get(counter).getName(), startRow, col);
-        drawText("HP: "+colorByPercent(party.get(counter).getHP(), party.get(counter).getmaxHP()), startRow + 1, col);
-        drawText("" + party.get(counter).getSpecialName() + ": " + party.get(counter).getSpecial() + "/" + party.get(counter).getSpecialMax(), startRow + 2, col);
-        drawText("Status: " + party.get(counter).getStatus(), startRow + 3, col);
+        if (party.get(counter).getHP() > 0) {
+          drawText("HP: "+colorByPercent(party.get(counter).getHP(), party.get(counter).getmaxHP()), startRow + 1, col);
+          drawText(party.get(counter).getSpecialName() + ": " + party.get(counter).getSpecial() + "/" + party.get(counter).getSpecialMax(), startRow + 2, col);
+          drawText("Status: " + party.get(counter).getStatus(), startRow + 3, col);
+        }
+        else {
+          drawText("HP: DEAD   ", startRow+1, col);
+          drawText(party.get(counter).getSpecialName() + ": DEAD", startRow + 2, col);
+          drawText("Status: DEAD", startRow + 3, col);
+        }
+        
         col += 26;
         counter++;
       }
@@ -274,7 +282,7 @@ public class Game{
     //Main loop
 
     //display this prompt at the start of the game.
-    String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/support/special/quit";
+    String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/support/special/quit 1/2/3";
     drawText(preprompt, 27, 2);
     if (whichPlayer < 3) {
       displayMoveset(party, whichPlayer);
@@ -305,10 +313,10 @@ public class Game{
       // TextBox(24,2,1,78,"input: "+input+" partyTurn:"+partyTurn+ " whichPlayer="+whichPlayer+ " whichOpp="+whichOpponent);
 
       //display event based on last turn's input
+      ////////
       if(partyTurn){
-        
         //Process user input for the last Adventurer:
-        if(input.startsWith("attack ") || input.startsWith("a ")){
+        if((input.startsWith("attack ") || input.startsWith("a ")) && (input.endsWith("1") || input.endsWith("2") || input.endsWith("3"))){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
           drawText("                          ", 28, 2); // to block out previous input
           drawText("                          ", 29, 2); // to block out invalid input text
@@ -316,7 +324,7 @@ public class Game{
           TextBox(10, 2, 40, 5,party.get(whichPlayer).attack(enemies, whichOpponent-1));
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
-        else if(input.startsWith("special ") || input.startsWith("sp ")){
+        else if((input.startsWith("special ") || input.startsWith("sp ")) && (input.endsWith("1") || input.endsWith("2") || input.endsWith("3"))){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
           drawText("                          ", 28, 2); // to block out previous input
           drawText("                          ", 29, 2); // to block out invalid input text
@@ -326,7 +334,7 @@ public class Game{
           //YOUR CODE HERE
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
-        else if(input.startsWith("su ") || input.startsWith("support ")){
+        else if((input.startsWith("su ") || input.startsWith("support ")) && (input.endsWith("1") || input.endsWith("2") || input.endsWith("3"))){
           //"support 0" or "su 0" or "su 2" etc.
           //assume the value that follows su  is an integer.
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
@@ -344,8 +352,9 @@ public class Game{
           quit();
         }
         else {
-          drawText("                          ", 28, 2); // to block out previous input
-          drawText("Invalid input, try again!", 29, 2);
+          TextBox(28, 2, 77, 1, " "); // to block out previous input
+          TextBox(29, 2, 77, 1, "Invalid input, try again!");
+          whichPlayer--;
         }
 
         //You should decide when you want to re-ask for user input
@@ -356,8 +365,8 @@ public class Game{
         if(whichPlayer < party.size()){
           //This is a player turn.
           //Decide where to draw the following prompt:
-          String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
-          drawText(prompt, 27, 2);
+          String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit 1/2/3";
+          TextBox(27, 2, 77, 1, prompt);
         }
         
         else{
@@ -370,7 +379,7 @@ public class Game{
           whichOpponent = 0;
         }
         //done with one party member
-      }
+      }/////////////////-------------
       
       else{
         //not the party turn!
@@ -411,7 +420,7 @@ public class Game{
         turn++;
         partyTurn=true;
         //display this prompt before player's turn
-        String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+        String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit 1/2/3";
       }
 
       //display the updated screen after input has been processed.

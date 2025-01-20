@@ -47,7 +47,7 @@ public class CodeWarrior extends Adventurer{
     int damage = (int)(Math.random()*6)+2;
     other.get(n).applyDamage(damage);
     restoreSpecial(2);
-    return this + " attacked "+ other + " and dealt "+ damage +
+    return this + " attacked "+ other.get(n) + " and dealt "+ damage +
     " points of damage. They then take a sip of their coffee.";
   }
 
@@ -61,7 +61,7 @@ public class CodeWarrior extends Adventurer{
       other.get(n).applyDamage(damage);
       return this + " used their "+preferredLanguage+
       " skills to hack the matrix. "+
-      " This glitched out "+other+" dealing "+ damage +" points of damage.";
+      " This glitched out "+other.get(n)+" dealing "+ damage +" points of damage.";
     }else{
       return "Not enough caffeine to use the ultimate code. Instead "+attack(other, n);
     }
