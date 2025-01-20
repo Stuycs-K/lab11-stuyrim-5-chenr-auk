@@ -409,11 +409,21 @@ public class Game{
                 }
               }
               else {
-                TextBox(10, 2, 40, 5,enemies.get(whichOpponent).attack(party, randomPlayer));
+              TextBox(10, 2, 40, 5,enemies.get(whichOpponent).attack(party, randomPlayer));
               }
             } 
             if (randomAction == 1) {
+              if (party.get(randomPlayer).getHP() <= 0) {
+                try {
+                TextBox(10, 2, 40, 5,enemies.get(whichOpponent).specialAttack(party, randomPlayer + 1));
+                }
+                catch (Exception e) {
+                  TextBox(10, 2, 40, 5,enemies.get(whichOpponent).specialAttack(party, randomPlayer - 1));
+                }
+              }
+              else {
               TextBox(10, 2, 40, 5,enemies.get(whichOpponent).specialAttack(party, randomPlayer));
+              }
             }
             if (randomAction == 2) {
               TextBox(10, 2, 40, 5,enemies.get(whichOpponent).support(enemies, randomPlayer));
