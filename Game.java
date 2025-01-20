@@ -410,8 +410,7 @@ public class Game{
             }
             if (randomAction == 2) {
               TextBox(10, 2, 40, 5,enemies.get(whichOpponent).support(enemies, randomPlayer));
-          }
-          }
+            }
           //Decide where to draw the following prompt:
           String prompt = "press enter to see next turn";
 
