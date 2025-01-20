@@ -280,6 +280,18 @@ public class Game{
       displayMoveset(party, whichPlayer);
     }
 
+    // death message
+    for (int i = 0; i < party.size(); i++) {
+      if (party.get(i).getHP() <= 0) {
+        drawText(party.get(i) + " has tragically died!", 7, 2);
+      }
+    }
+    for (int i = 0; i < enemies.size(); i++) {
+      if (enemies.get(i).getHP() <= 0) {
+        drawText(enemies.get(i) + " has tragically died!", 7, 2);
+      }
+    }
+
     // ====================== start of game loop
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
       if (whichPlayer < 3) {
@@ -362,12 +374,25 @@ public class Game{
       
       else{
         //not the party turn!
-
-
-        //enemy attacks a randomly chosen person with a randomly chosen attack.z`
+        //enemy attacks a randomly chosen person with a randomly chosen attack.`
         //Enemy action choices go here!
         /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
         //YOUR CODE HERE
+        for (int i = 0; i < enemies.size(); i++) {
+          if (enemies.get(i).getHP() > 0) {
+            int randomPlayer = (int) Math.random() * 3;
+            int randomAction = (int) Math.random() * 3;
+            if (randomAction == 0) {
+              TextBox(10, 2, 40, 5,enemies.get(i).attack(party, randomPlayer));
+            }
+            if (randomAction == 1) {
+              TextBox(10, 2, 40, 5,enemies.get(i).specialAttack(party, randomPlayer));
+            }
+            if (randomAction == 2) {
+              TextBox(10, 2, 40, 5,enemies.get(i).support(enemies, randomPlayer));
+            }
+          }
+        }
         /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 
