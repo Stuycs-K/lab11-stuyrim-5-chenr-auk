@@ -152,8 +152,19 @@ public abstract class Adventurer{
     this.setStatus("freeze", 1);
   }
 
-  public String freeze() {
-    
+  public void freeze() {
+    int indexOfFreeze = statusEffect.indexOf("freeze");
+    if (indexOfFreeze == -1) { // if there is no freeze
+      return;
+    }
+
+    else {
+      statusTurns.set(indexOfFreeze, statusTurns.get(indexOfFreeze)-1); // set freeze
+      if (statusTurns.get(indexOfFreeze) == 0) { // if freeze is done, remove the freeze status
+        statusEffect.remove(indexOfFreeze);
+        statusTurns.remove(indexOfFreeze);
+      }
+    }
   }
 
   public int damageMult() {
