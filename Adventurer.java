@@ -6,7 +6,7 @@ public abstract class Adventurer{
   private String name;
   private int HP,maxHP;
   private ArrayList<String>statusEffect;
-  private int statusTurns;
+  private ArrayList<Integer>statusTurns;
 
   //Abstract methods are meant to be implemented in child classes.
   /*
@@ -107,8 +107,8 @@ public abstract class Adventurer{
   }
 
   public void setStatus(String s, int turnCount) {
-    statusEffect = s;
-    statusTurns = turnCount;
+    statusEffect.add(s);
+    statusTurns.add(turnCount);
   }
 
   public String printStatus() {
@@ -126,6 +126,10 @@ public abstract class Adventurer{
 
   public ArrayList<String> getStatus() {
     return statusEffect;
+  }
+
+  public void applyBleed() {
+    this.setStatus("bleed", 2);
   }
 
   public String bleed() {
