@@ -1,10 +1,11 @@
 import java.util.Random;
 
 import java.util.ArrayList;
+
 public abstract class Adventurer{
   private String name;
   private int HP,maxHP;
-  private String statusEffect = "none";
+  private ArrayList<String>statusEffect;
   private int statusTurns;
 
   //Abstract methods are meant to be implemented in child classes.
@@ -111,7 +112,15 @@ public abstract class Adventurer{
   }
 
   public String getStatus() {
-    return statusEffect;
+    String result = "";
+    for (int i=0; i<statusEffect.size(); i++) {
+      if (i==size()-1) {
+        result+=statusEffect.get(i);
+      }
+      else {
+        result+=statusEffect.get(i)+", ";
+      }
+    }
   }
 
   public String bleed() {
@@ -133,5 +142,9 @@ public abstract class Adventurer{
     else {
       return getStatus();
     }
+  }
+
+  public int damageMult() {
+
   }
 }
