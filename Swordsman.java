@@ -4,10 +4,19 @@ public class Swordsman extends Adventurer {
   int HP;
   int Rage, maxRage;
 
-  public Swordsman() {
+  public Swordsman(String name, int HP) {
+    super(name, HP);
     HP = 30;
     Rage = 0;
     maxRage = 5;
+  }
+
+  public Swordsman(String name) {
+    this(name, 30);
+  }
+
+  public Swordsman() {
+    this("Swordsman");
   }
 
   public String getSpecialName() {
@@ -51,7 +60,7 @@ public class Swordsman extends Adventurer {
       other.get(n).applyDamage(damage);
       restoreSpecial(2);
 
-      return this + " attacked " + other.get(n).getName() + " for " + damage + " damage! " + this + " gained 2 Rage";
+      return this + " attacked " + other.get(n).getName() + " for " + damage + " damage! " + this + " gained 1 Rage";
     }
   }
 

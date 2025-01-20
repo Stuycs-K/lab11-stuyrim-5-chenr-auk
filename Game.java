@@ -1,4 +1,6 @@
 import java.util.*;
+import java.util.ArrayList;
+
 public class Game{
   private static final int WIDTH = 80;
   private static final int HEIGHT = 30;
@@ -33,9 +35,8 @@ public class Game{
 
       // borders separating allies
       if (j < 26 && j > 21 || j < 6 && j > 1) {
-        drawText("|", j, 21);
-        drawText("|", j, 41);
-        drawText("|", j, 61);
+        drawText("|", j, 27);
+        drawText("|", j, 53);
       }
     }
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
@@ -63,42 +64,58 @@ public class Game{
   */
   public static void TextBox(int row, int col, int width, int height, String text){
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    String partial = "";
+    String partial = " ";
     int theRow = row; // theRow = the current row the cursor is at
 
-    while (theRow < row + height) {
-      if (text.equals("")) { // if there is no more to print
-        for (int i=0; i<width; i++) {
-          partial += " ";
-        }
-        drawText(partial, theRow, col);
+    // clear the area first
+    for (int i=0; i<height; i++) {
+      for (int j=0; j<width; j++) {
+        drawText(partial, theRow+i, col+j);
       }
-      else { // if there is still more to print
-        if (text.length() <= width) {
-          partial = text.substring(0); 
-          for (int i=0; i<partial.length()-width; i++) {
-            // add spaces to the end of the last line of characters 
-            partial = partial + " ";
-          }
-          drawText(partial, theRow, col);
-          text = "";
+    }
+    Text.go(row, col);
+
+    // create an arraylist toPrint that is the words that are to be displayed
+    ArrayList<String>toPrint = new ArrayList<String>();
+    String[] temp = text.split(" ");
+    for (String elem : temp) {
+      toPrint.add(elem);
+    }
+
+    //int counter = 1;
+
+    // loop that displays the words
+    while (toPrint.size() > 0 && theRow <= row + height-1) { // while there are words to be displayed
+      // System.out.println("count number " + counter);
+      // counter++;
+      partial = "";
+      while (partial.length() < width && toPrint.size()>0) { 
+        // add words to partial until it gets longer than the width
+        // and remove the words from toPrint
+        if (partial.length() + toPrint.get(0).length() <= width) { 
+          partial += toPrint.get(0) + " ";
+          toPrint.remove(0);
         }
+        // there is no case for when the word is longer than the width, 
+        // but that won't happen when we make this game anyways
         else {
-          partial = text.substring(0, width);
-          drawText(partial, theRow, col);
-          text = text.substring(width);
+          break;
         }
       }
+      // print the line
+      drawText(partial, theRow, col);
       theRow++;
     }
-    /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+    Text.go(theRow+1, 0);
   }
+    /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 
     //return a random adventurer (choose between all available subclasses)
     //feel free to overload this method to allow specific names/stats.
     public static Adventurer createRandomAdventurer(){
-      int chooser = (int) Math.random() * 2;
+      int chooser = (int)(Math.random()*3);
       if (chooser == 0) {
         return new Archmage();
       }
@@ -128,10 +145,10 @@ public class Game{
       int counter = 0; 
       while (counter < party.size()) {
         drawText(party.get(counter).getName(), startRow, col);
-        drawText("HP: "+party.get(counter).getHP(), startRow + 1, col);
-        drawText("" + party.get(counter).getSpecialName() + ": " + party.get(counter).getSpecial(), startRow + 2, col);
+        drawText("HP: "+colorByPercent(party.get(counter).getHP(), party.get(counter).getmaxHP()), startRow + 1, col);
+        drawText("" + party.get(counter).getSpecialName() + ": " + party.get(counter).getSpecial() + "/" + party.get(counter).getSpecialMax(), startRow + 2, col);
         drawText("Status: " + party.get(counter).getStatus(), startRow + 3, col);
-        col += 20;
+        col += 26;
         counter++;
       }
       /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
@@ -143,9 +160,17 @@ public class Game{
     String output = String.format("%2s", hp+"")+"/"+String.format("%2s", maxHP+"");
     //COLORIZE THE OUTPUT IF HIGH/LOW:
     // under 25% : red
+    if (hp <= (double)(0.25*maxHP)) {
+      return Text.colorize(output, Text.RED);
+    }
     // under 75% : yellow
+    else if (hp <= (double)(0.75*maxHP)) {
+      return Text.colorize(output, Text.YELLOW);
+    }
     // otherwise : white
-    return output;
+    else {
+      return output;
+    }
   }
 
 
@@ -186,6 +211,24 @@ public class Game{
     Text.go(32,1);
   }
 
+  public static void displayMoveset(ArrayList<Adventurer>party, int whichPlayer) {
+    if (party.get(whichPlayer).getName() == "Swordsman") {
+      TextBox(15, 2, 24, 6, "ATTACK: SWORD SLASH deals 5-10 damage and has a 20% chance to apply BLEED for 2 turns; gains 1 Rage");
+      TextBox(15, 28, 24, 6, "SPECIAL ATTACK: LETHAL STRIKE [Requires 3 Rage] kills opponent if they have 1/2 HP or less; if not, deals 10 damage");
+      TextBox(15, 54, 24, 6, "SUPPORT: SHARPEN increases the damage of a team member by 1.5x for the next attack; gains 1 Rage");
+    }
+    else if (party.get(whichPlayer).getName() == "Archmage") {
+      TextBox(15, 2, 24, 6, "ATTACK: BLAST deals damage equal to half this Archmage's mana; gains 2 Mana");
+      TextBox(15, 28, 24, 6, "SPECIAL ATTACK: FREEZE STORM [Requires 40 Mana] freezes all opponents for two turns");
+      TextBox(15, 54, 24, 6, "SUPPORT: FORCE FIELD projects a shield that blocks 20 damage onto a team member; gains 2 Mana");
+    }
+    else if (party.get(whichPlayer).getName() == "Bob") {
+      TextBox(15, 2, 24, 6, "ATTACK deals 2-7 damage, restores 2 caffeine");
+      TextBox(15, 28, 24, 6, "SPECIAL ATTACK [Requires 8 caffeine] deals 3-12 damage");
+      TextBox(15, 54, 24, 6, "SUPPORT increases a team member's special resource");
+    }
+  }
+
   public static void run(){
     //Clear and initialize
     Text.hideCursor();
@@ -198,7 +241,7 @@ public class Game{
     //start with 1 boss and modify the code to allow 2-3 adventurers later.
     ArrayList<Adventurer>enemies = new ArrayList<Adventurer>();
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    int enemyCount = 1 + (int)(Math.random() * 2);
+    int enemyCount = 3;
     for (int i = 0; i < enemyCount; i++) {
       enemies.add(createRandomAdventurer());
     }
@@ -210,7 +253,7 @@ public class Game{
     ArrayList<Adventurer> party = new ArrayList<>();
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     //YOUR CODE HERE
-    int partyCount = 2 + (int)(Math.random() * 2);
+    int partyCount = 3;
     for (int i = 0; i < partyCount; i++) {
       party.add(createRandomAdventurer());
     }
@@ -219,6 +262,7 @@ public class Game{
     boolean partyTurn = true;
     int whichPlayer = 0;
     int whichOpponent = 0;
+    int whichTeammate = 0;
     int turn = 0;
     String input = "";//blank to get into the main loop.
     Scanner in = new Scanner(System.in);
@@ -232,26 +276,41 @@ public class Game{
     //display this prompt at the start of the game.
     String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/support/special/quit";
     drawText(preprompt, 27, 2);
-    
+    if (whichPlayer < 3) {
+      displayMoveset(party, whichPlayer);
+    }
 
+    // ====================== start of game loop
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
+      if (whichPlayer < 3) {
+        displayMoveset(party, whichPlayer);
+      }
+
       //Read user input
       input = userInput(in);
 
       //example debug statment
-      TextBox(24,2,1,78,"input: "+input+" partyTurn:"+partyTurn+ " whichPlayer="+whichPlayer+ " whichOpp="+whichOpponent);
+      // TextBox(24,2,1,78,"input: "+input+" partyTurn:"+partyTurn+ " whichPlayer="+whichPlayer+ " whichOpp="+whichOpponent);
 
       //display event based on last turn's input
       if(partyTurn){
-
+        
         //Process user input for the last Adventurer:
         if(input.startsWith("attack ") || input.startsWith("a ")){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-          party.get(whichPlayer).attack(enemies, whichOpponent);
+          drawText("                          ", 28, 2); // to block out previous input
+          drawText("                          ", 29, 2); // to block out invalid input text
+          whichOpponent = Integer.parseInt(input.substring(input.length()-1));
+          TextBox(10, 2, 40, 5,party.get(whichPlayer).attack(enemies, whichOpponent-1));
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
-        else if(input.startsWith("special") || input.startsWith("sp")){
+        else if(input.startsWith("special ") || input.startsWith("sp ")){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+          drawText("                          ", 28, 2); // to block out previous input
+          drawText("                          ", 29, 2); // to block out invalid input text
+          whichOpponent = Integer.parseInt(input.substring(input.length()-1));
+
+          TextBox(10, 2, 40, 5,party.get(whichPlayer).specialAttack(enemies, whichOpponent-1));
           //YOUR CODE HERE
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
@@ -259,8 +318,22 @@ public class Game{
           //"support 0" or "su 0" or "su 2" etc.
           //assume the value that follows su  is an integer.
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+          drawText("                          ", 28, 2); // to block out previous input
+          drawText("                          ", 29, 2); // to block out invalid input text
+
+          whichTeammate = Integer.parseInt(input.substring(input.length()-1));
+
+          TextBox(10, 2, 40, 5,party.get(whichPlayer).support(party, whichTeammate-1));
+
           //YOUR CODE HERE
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+        }
+        else if (input.startsWith("q") || input.startsWith("quit")) {
+          quit();
+        }
+        else {
+          drawText("                          ", 28, 2); // to block out previous input
+          drawText("Invalid input, try again!", 29, 2);
         }
 
         //You should decide when you want to re-ask for user input
@@ -272,18 +345,22 @@ public class Game{
           //This is a player turn.
           //Decide where to draw the following prompt:
           String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
-
-
-        }else{
+          drawText(prompt, 27, 2);
+        }
+        
+        else{
           //This is after the player's turn, and allows the user to see the enemy turn
           //Decide where to draw the following prompt:
-          String prompt = "press enter to see monster's turn";
+          String prompt = "Press enter to see monster's turn               ";
+          drawText(prompt, 27, 2);
 
           partyTurn = false;
           whichOpponent = 0;
         }
         //done with one party member
-      }else{
+      }
+      
+      else{
         //not the party turn!
 
 

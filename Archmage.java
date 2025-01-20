@@ -13,7 +13,7 @@ public class Archmage extends Adventurer{
       }
     
     public Archmage(){
-        this("Arch Mage");
+        this("Archmage");
       }
 
     public String getSpecialName() {
