@@ -160,7 +160,7 @@ public abstract class Adventurer{
     }
 
     else {
-      statusTurns.set(indexOfFreeze, statusTurns.get(indexOfFreeze)-1); // set freeze
+      statusTurns.set(indexOfFreeze, statusTurns.get(indexOfFreeze)-1); // set freeze turns to one less
       if (statusTurns.get(indexOfFreeze) == 0) { // if freeze is done, remove the freeze status
         statusEffect.remove(indexOfFreeze);
         statusTurns.remove(indexOfFreeze);
@@ -170,9 +170,26 @@ public abstract class Adventurer{
 
   public void setDamageMult(double mult) {
     this.damageMult = mult;
+    this.setStatus("high dmg", 1);
   }
 
-  public int damageMult(int mult) {
+  public double damageMult() {
+    double theMult = this.damageMult;
 
+    int indexOfDmg = statusEffect.indexOf("high dmg");
+    if (indexOfDmg == -1) { // if there is no high dmg
+      return 1.0;
+    }
+
+    else {
+      statusTurns.set(indexOfDmg, statusTurns.get(indexOfDmg)-1); // set dmg turns to one less
+      if (statusTurns.get(indexOfDmg) == 0) { // if dmg is done, remove the dmg status
+        statusEffect.remove(indexOfDmg);
+        statusTurns.remove(indexOfDmg);
+        this.damageMult = 1;
+      }
+    }
+
+    return theMult;
   }
 }
