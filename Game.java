@@ -332,8 +332,9 @@ public class Game{
           quit();
         }
         else {
-          drawText("                          ", 28, 2); // to block out previous input
-          drawText("Invalid input, try again!", 29, 2);
+          TextBox(28, 2, 77, 1, " "); // to block out previous input
+          TextBox(29, 2, 77, 1, "Invalid input, try again!");
+          whichPlayer--;
         }
 
         //You should decide when you want to re-ask for user input
