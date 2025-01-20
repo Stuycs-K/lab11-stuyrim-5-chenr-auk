@@ -132,8 +132,20 @@ public abstract class Adventurer{
     this.setStatus("bleed", 2);
   }
 
-  public String bleed() {
-    
+  public void bleed() {
+    int indexOfBleed = statusEffect.indexOf("bleed");
+    if (indexOfBleed == -1) { // if there is no bleed status
+      return;
+    }
+
+    else {
+      this.setHP(this.getHP()-2); // subtract 2 health
+      statusTurns.set(indexOfBleed, statusTurns.get(indexOfBleed)-1); // set bleed turns to one less
+      if (statusTurns.get(indexOfBleed) == 0) { // if bleed is done, remove the bleed status
+        statusEffect.remove(indexOfBleed);
+        statusTurns.remove(indexOfBleed);
+      }
+    }
   }
 
   public void applyFreeze() {
