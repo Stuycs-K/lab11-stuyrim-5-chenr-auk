@@ -17,9 +17,9 @@ Make a clear list of features that work/dont work
 
 ### Progress
 
-Implementation of Classes :x:
+Implementation of Classes :white_check_mark:
 
-Theme :x:
+Theme : Simple RPG :
 
 Game :x:
 
@@ -28,14 +28,21 @@ Game :x:
 ### Swordsman 
 | Ability | Name | Description |
 | :-----: | :-----: | :-----: |
-| _Attack_ | Sword Slash | does 5 to 10 damage and has a chance to cause bleed which will be a damage over time for two turns|
-| _Support_ | Sharpen | sharpens your blade and the next attack will do 1.5 times damage |
-| _Special Ability_ | Lethal Strike | [requires at least 3 Rage] if an opponent has half HP or less, this attack will one shot them, if not, deal 10 damage guaranteed |
+| _Attack_ | Sword Slash | does 5 to 10 damage and has a chance to cause BLEED which will deal damage over time for two turns. Gains one rage. |
+| _Support_ | Sharpen | Sharpens your blade and the next attack will do 1.5x damage or buffs ally damage by 1.5x. |
+| _Special Ability_ | Lethal Strike | [requires at least 3 Rage] if an opponent has half HP or less, this attack will one shot them, if not, deal 10 damage guaranteed. |
 
 ### Archmage
 | Ability | Name | Description |
 | :-----: | :-----: | :-----: |
-| _Attack_ | Blast | does damage to opponent, not too much damage |
-| _Support_ | Force Field | creates a shield that blocks 20 damage, can be applied on teammate or self |
-| _Special Ability_ | Freeze Storm |freezes all enemies for one turn |
+| _Attack_ | Blast | Deals damage equal to half the mana, channels two mana. |
+| _Support_ | Force Field | creates a shield that blocks 20 damage, can be applied on teammate or self, channels two mana. |
+| _Special Ability_ | Freeze Storm | [requires 40 mana] freezes all enemies for one turn. |
+
+### CodeWarrior
+| Ability | Name | Description |
+| :-----: | :-----: | :-----: |
+| _Attack_ | Code Smash | Attack deals 2 - 7 damage, restores 2 caffeine. |
+| _Support_ | Caffeine Boost | Increases a team member's special resource. |
+| _Special Ability_ | Harder Code Smash | [requires 8 caffeine] Deals 3 - 12 damage. |
 
