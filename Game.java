@@ -145,7 +145,7 @@ public class Game{
       int counter = 0; 
       while (counter < party.size()) {
         drawText(party.get(counter).getName(), startRow, col);
-        drawText("HP: "+party.get(counter).getHP(), startRow + 1, col);
+        drawText("HP: "+colorByPercent(party.get(counter).getHP(), party.get(counter).getmaxHP()), startRow + 1, col);
         drawText("" + party.get(counter).getSpecialName() + ": " + party.get(counter).getSpecial() + "/" + party.get(counter).getSpecialMax(), startRow + 2, col);
         drawText("Status: " + party.get(counter).getStatus(), startRow + 3, col);
         col += 26;
