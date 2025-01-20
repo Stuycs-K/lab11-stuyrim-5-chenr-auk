@@ -148,7 +148,7 @@ public class Game{
         if (party.get(counter).getHP() > 0) {
           drawText("HP: "+colorByPercent(party.get(counter).getHP(), party.get(counter).getmaxHP()), startRow + 1, col);
           drawText(party.get(counter).getSpecialName() + ": " + party.get(counter).getSpecial() + "/" + party.get(counter).getSpecialMax(), startRow + 2, col);
-          drawText("Status: " + party.get(counter).getStatus(), startRow + 3, col);
+          drawText("Status: " + party.get(counter).printStatus(), startRow + 3, col);
         }
         else {
           drawText("HP: DEAD   ", startRow+1, col);

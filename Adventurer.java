@@ -115,10 +115,10 @@ public abstract class Adventurer{
     String result = "";
     for (int i=0; i<statusEffect.size(); i++) {
       if (i==statusEffect.size()-1) {
-        result+=statusEffect.get(i) + ;
+        result+=statusEffect.get(i) + " (" + statusTurns.get(i)+")";
       }
       else {
-        result+=statusEffect.get(i)+", ";
+        result+=statusEffect.get(i)+" (" + statusTurns.get(i)+"), ";
       }
     }
     return result;
