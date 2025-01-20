@@ -288,6 +288,15 @@ public class Game{
       displayMoveset(party, whichPlayer);
     }  
 
+
+
+
+
+
+
+
+
+
     // ====================== start of game loop
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
       if (whichPlayer < 3) {
@@ -421,6 +430,14 @@ public class Game{
 
     }//end of main game loop
 
+
+
+
+
+
+
+
+    
 
     //After quit reset things:
     quit();
