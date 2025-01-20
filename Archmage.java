@@ -5,7 +5,7 @@ public class Archmage extends Adventurer{
     public Archmage(String name, int hp){
         super(name,hp);
         maxMana = 40;
-        mana = maxMana/2;
+        mana = maxMana;
       }
     
     public Archmage(String name){
