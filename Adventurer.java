@@ -127,7 +127,7 @@ public abstract class Adventurer{
 
   public String freeze() {
     if (this.getStatus().equals("freeze") && statusTurns > 0) {
-      // skip the turn
+      statusTurns--;
       return this + " is frozen!";
     }
     else {

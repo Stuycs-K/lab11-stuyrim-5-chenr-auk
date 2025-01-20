@@ -286,19 +286,7 @@ public class Game{
     TextBox(27, 2, 77, 1, preprompt);
     if (whichPlayer < 3) {
       displayMoveset(party, whichPlayer);
-    }
-
-    // death message
-    for (int i = 0; i < party.size(); i++) {
-      if (party.get(i).getHP() <= 0) {
-        drawText(party.get(i) + " has tragically died!", 7, 2);
-      }
-    }
-    for (int i = 0; i < enemies.size(); i++) {
-      if (enemies.get(i).getHP() <= 0) {
-        drawText(enemies.get(i) + " has tragically died!", 7, 2);
-      }
-    }
+    }  
 
     // ====================== start of game loop
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
@@ -315,6 +303,13 @@ public class Game{
       //display event based on last turn's input
       ////////
       if(partyTurn){
+        int deathMessageRow = 7;
+        for (int i = 0; i < enemies.size(); i++) {
+          if (enemies.get(i).getHP() <= 0) {
+            drawText(party.get(i) + " has tragically died!", 7, 2);
+            deathMessageRow++;
+          }
+        }
         //Process user input for the last Adventurer:
         if((input.startsWith("attack ") || input.startsWith("a ")) && (input.endsWith("1") || input.endsWith("2") || input.endsWith("3"))){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
@@ -372,7 +367,7 @@ public class Game{
         else{
           //This is after the player's turn, and allows the user to see the enemy turn
           //Decide where to draw the following prompt:
-          String prompt = "Press enter to see monster's turn                                       ";
+          String prompt = "Press enter to see monster's turn                                                      ";
           drawText(prompt, 27, 2);
 
           partyTurn = false;
@@ -385,31 +380,28 @@ public class Game{
         //not the party turn!
         //enemy attacks a randomly chosen person with a randomly chosen attack.`
         //Enemy action choices go here!
-        /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-        //YOUR CODE HERE
-        for (int i = 0; i < enemies.size(); i++) {
-          if (enemies.get(i).getHP() > 0) {
-            int randomPlayer = (int) Math.random() * 3;
-            int randomAction = (int) Math.random() * 3;
-            if (randomAction == 0) {
-              TextBox(10, 2, 40, 5,enemies.get(i).attack(party, randomPlayer));
-            }
-            if (randomAction == 1) {
-              TextBox(10, 2, 40, 5,enemies.get(i).specialAttack(party, randomPlayer));
-            }
-            if (randomAction == 2) {
-              TextBox(10, 2, 40, 5,enemies.get(i).support(enemies, randomPlayer));
-            }
-          }
+        int randomPlayer = (int) (Math.random()) * party.size();
+        int randomAction = (int) (Math.random()) * 3;
+
+        if (randomAction == 0) {
+          TextBox(10, 2, 40, 5,enemies.get(whichOpponent).attack(party, randomPlayer));
+        } 
+        if (randomAction == 1) {
+          TextBox(10, 2, 40, 5,enemies.get(whichOpponent).specialAttack(party, randomPlayer));
         }
-        /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-
-
+        if (randomAction == 2) {
+          TextBox(10, 2, 40, 5,enemies.get(whichOpponent).support(enemies, randomPlayer));
+        }
         //Decide where to draw the following prompt:
         String prompt = "press enter to see next turn";
 
         whichOpponent++;
 
+        for (int i = 0; i < party.size(); i++) {
+          if (party.get(i).getHP() <= 0) {
+            drawText(party.get(i) + " has tragically died!", 7, 2);
+          }
+        }
       }//end of one enemy.
 
       //modify this if statement.
