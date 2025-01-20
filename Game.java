@@ -152,8 +152,6 @@ public class Game{
         }
         else {
           drawText("HP: DEAD   ", startRow+1, col);
-          drawText(party.get(counter).getSpecialName() + ": DEAD", startRow + 2, col);
-          drawText("Status: DEAD", startRow + 3, col);
         }
         
         col += 26;
@@ -303,13 +301,7 @@ public class Game{
       //display event based on last turn's input
       ////////
       if(partyTurn){
-        int deathMessageRow = 7;
-        for (int i = 0; i < enemies.size(); i++) {
-          if (enemies.get(i).getHP() <= 0) {
-            drawText(party.get(i) + " has tragically died!", 7, 2);
-            deathMessageRow++;
-          }
-        }
+        drawText("                              ", 7, 2);
         //Process user input for the last Adventurer:
         if((input.startsWith("attack ") || input.startsWith("a ")) && (input.endsWith("1") || input.endsWith("2") || input.endsWith("3"))){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
@@ -373,10 +365,17 @@ public class Game{
           partyTurn = false;
           whichOpponent = 0;
         }
+
+        for (int i = 0; i < enemies.size(); i++) {
+          if (enemies.get(i).getHP() <= 0) {
+            drawText(enemies.get(i) + " has tragically died!", 7, 2);
+          }
+        }
         //done with one party member
       }/////////////////-------------
       
       else{
+        drawText("                              ", 7, 2);
         //not the party turn!
         //enemy attacks a randomly chosen person with a randomly chosen attack.`
         //Enemy action choices go here!
