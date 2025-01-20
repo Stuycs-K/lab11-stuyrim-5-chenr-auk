@@ -305,6 +305,9 @@ public class Game{
       if (whichPlayer < 3) {
         displayMoveset(party, whichPlayer);
       }
+      else {
+        partyTurn = false;
+      }
 
       //Read user input
       input = userInput(in);
