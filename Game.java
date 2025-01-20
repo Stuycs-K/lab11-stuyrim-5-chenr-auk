@@ -283,7 +283,7 @@ public class Game{
 
     //display this prompt at the start of the game.
     String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/support/special/quit 1/2/3";
-    drawText(preprompt, 27, 2);
+    TextBox(27, 2, 77, 1, preprompt);
     if (whichPlayer < 3) {
       displayMoveset(party, whichPlayer);
     }
