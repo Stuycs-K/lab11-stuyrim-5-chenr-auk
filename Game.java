@@ -410,15 +410,15 @@ public class Game{
 
               if (randomAction == 0) {
                 if (party.get(randomPlayer).getHP() <= 0) {
-                try {
-                TextBox(10, 2, 40, 5,enemies.get(whichOpponent).attack(party, randomPlayer + 1));
+                  try {
+                  TextBox(10, 2, 40, 5,enemies.get(whichOpponent).attack(party, randomPlayer + 1));
+                  }
+                  catch (Exception e) {
+                    TextBox(10, 2, 40, 5,enemies.get(whichOpponent).attack(party, randomPlayer - 1));
+                  }
                 }
-                catch (Exception e) {
-                  TextBox(10, 2, 40, 5,enemies.get(whichOpponent).attack(party, randomPlayer - 1));
-                }
-              }
-              else {
-              TextBox(10, 2, 40, 5,enemies.get(whichOpponent).attack(party, randomPlayer));
+                else {
+                  TextBox(10, 2, 40, 5,enemies.get(whichOpponent).attack(party, randomPlayer));
                 }
             } 
               if (randomAction == 1) {
@@ -437,6 +437,7 @@ public class Game{
               if (randomAction == 2) {
                 TextBox(10, 2, 40, 5,enemies.get(whichOpponent).support(enemies, randomPlayer));
               }
+            }
             //Decide where to draw the following prompt:
             String prompt = "press enter to see next turn";
 
@@ -470,5 +471,4 @@ public class Game{
     //After quit reset things:
     quit();
   }
-}
 }
