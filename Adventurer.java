@@ -111,16 +111,21 @@ public abstract class Adventurer{
     statusTurns = turnCount;
   }
 
-  public String getStatus() {
+  public String printStatus() {
     String result = "";
     for (int i=0; i<statusEffect.size(); i++) {
-      if (i==size()-1) {
-        result+=statusEffect.get(i);
+      if (i==statusEffect.size()-1) {
+        result+=statusEffect.get(i) + ;
       }
       else {
         result+=statusEffect.get(i)+", ";
       }
     }
+    return result;
+  }
+
+  public ArrayList<String> getStatus() {
+    return statusEffect;
   }
 
   public String bleed() {
