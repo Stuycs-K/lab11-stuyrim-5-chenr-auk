@@ -304,6 +304,9 @@ public class Game{
 
       if (whichPlayer < 3) {
         displayMoveset(party, whichPlayer);
+        if (party.get(whichPlayer).getStatus().contains("bleed")) {
+          party.get(whichPlayer).bleed();
+        }
       }
       else {
         partyTurn = false;
