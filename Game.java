@@ -286,12 +286,8 @@ public class Game{
       displayMoveset(party, whichPlayer);
     }  
 
-
-
-
-
-
-
+    int[] livingAllies = new int[] {1, 2, 3};
+    int[] livingEnemies = new int[] {1, 2, 3};
 
 
 
@@ -321,7 +317,7 @@ public class Game{
       //display event based on last turn's input
       ////////
       if(partyTurn){
-        drawText("                              ", 7, 2);
+        drawText("\r", 7, 2);
         //Process user input for the last Adventurer:
         if((input.startsWith("attack ") || input.startsWith("a ")) && (input.endsWith("1") || input.endsWith("2") || input.endsWith("3"))){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
@@ -395,21 +391,24 @@ public class Game{
       }/////////////////-------------
       
       else{
-        drawText("                              ", 7, 2);
-        //not the party turn!
-        //enemy attacks a randomly chosen person with a randomly chosen attack.`
-        //Enemy action choices go here!
-        int randomPlayer = (int) (Math.random() * party.size());
-        int randomAction = (int) (Math.random() * 3);
+        drawText("\r", 7, 2);
 
-        if (randomAction == 0) {
-          TextBox(10, 2, 40, 5,enemies.get(whichOpponent).attack(party, randomPlayer));
-        } 
-        if (randomAction == 1) {
-          TextBox(10, 2, 40, 5,enemies.get(whichOpponent).specialAttack(party, randomPlayer));
-        }
-        if (randomAction == 2) {
-          TextBox(10, 2, 40, 5,enemies.get(whichOpponent).support(enemies, randomPlayer));
+          if (enemies.get(whichOpponent).getHP() > 0) {
+          //not the party turn!
+          //enemy attacks a randomly chosen person with a randomly chosen attack.`
+          //Enemy action choices go here!
+          int randomPlayer = (int) (Math.random() * party.size());
+          int randomAction = (int) (Math.random() * 3);
+
+          if (randomAction == 0) {
+            TextBox(10, 2, 40, 5,enemies.get(whichOpponent).attack(party, randomPlayer));
+          } 
+          if (randomAction == 1) {
+            TextBox(10, 2, 40, 5,enemies.get(whichOpponent).specialAttack(party, randomPlayer));
+          }
+          if (randomAction == 2) {
+            TextBox(10, 2, 40, 5,enemies.get(whichOpponent).support(enemies, randomPlayer));
+          }
         }
         //Decide where to draw the following prompt:
         String prompt = "press enter to see next turn";
