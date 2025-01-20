@@ -119,10 +119,10 @@ public abstract class Adventurer{
     }
     for (int i=0; i<statusEffect.size(); i++) {
       if (i==statusEffect.size()-1) {
-        result+=statusEffect.get(i) + "-" + statusTurns.get(i);
+        result+=statusEffect.get(i);
       }
       else {
-        result+=statusEffect.get(i)+"-" + statusTurns.get(i)+", ";
+        result+=statusEffect.get(i)+", ";
       }
     }
     return result;
@@ -157,16 +157,16 @@ public abstract class Adventurer{
   }
 
   public void freeze() {
-    int indexOfFreeze = statusEffect.indexOf("freeze");
+    int indexOfFreeze = this.statusEffect.indexOf("freeze");
     if (indexOfFreeze == -1) { // if there is no freeze
       return;
     }
 
     else {
-      statusTurns.set(indexOfFreeze, statusTurns.get(indexOfFreeze)-1); // set freeze turns to one less
+      this.statusTurns.set(indexOfFreeze, this.statusTurns.get(indexOfFreeze)-1); // set freeze turns to one less
       if (statusTurns.get(indexOfFreeze) == 0) { // if freeze is done, remove the freeze status
-        statusEffect.remove(indexOfFreeze);
-        statusTurns.remove(indexOfFreeze);
+        this.statusEffect.remove(indexOfFreeze);
+        this.statusTurns.remove(indexOfFreeze);
       }
     }
   }
