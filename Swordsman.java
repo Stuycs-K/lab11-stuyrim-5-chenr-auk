@@ -60,7 +60,7 @@ public class Swordsman extends Adventurer {
       other.get(n).applyDamage(damage);
       restoreSpecial(2);
 
-      return this + " attacked " + other.get(n).getName() + " for " + damage + " damage! " + this + " gained 2 Rage";
+      return this + " attacked " + other.get(n).getName() + " for " + damage + " damage! " + this + " gained 1 Rage";
     }
   }
 
