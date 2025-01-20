@@ -55,7 +55,7 @@ public class Archmage extends Adventurer{
 
     public String specialAttack(ArrayList<Adventurer> others, int n) {
         for (int i = 0; i < others.size(); i++) {
-            others.get(i).setStatus("frozen", 2);
+            others.get(i).applyFreeze();
         }
         return this + " froze all enemies for one turn!";
     }
