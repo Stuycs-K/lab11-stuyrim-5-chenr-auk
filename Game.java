@@ -304,7 +304,7 @@ public class Game{
       ////////
       if(partyTurn){
         //Process user input for the last Adventurer:
-        if(input.startsWith("attack ") || input.startsWith("a ")){
+        if((input.startsWith("attack ") || input.startsWith("a ")) && (input.endsWith("1") || input.endsWith("2") || input.endsWith("3"))){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
           drawText("                          ", 28, 2); // to block out previous input
           drawText("                          ", 29, 2); // to block out invalid input text
@@ -312,7 +312,7 @@ public class Game{
           TextBox(10, 2, 40, 5,party.get(whichPlayer).attack(enemies, whichOpponent-1));
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
-        else if(input.startsWith("special ") || input.startsWith("sp ")){
+        else if((input.startsWith("special ") || input.startsWith("sp ")) && (input.endsWith("1") || input.endsWith("2") || input.endsWith("3"))){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
           drawText("                          ", 28, 2); // to block out previous input
           drawText("                          ", 29, 2); // to block out invalid input text
@@ -322,7 +322,7 @@ public class Game{
           //YOUR CODE HERE
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
-        else if(input.startsWith("su ") || input.startsWith("support ")){
+        else if((input.startsWith("su ") || input.startsWith("support ")) && (input.endsWith("1") || input.endsWith("2") || input.endsWith("3"))){
           //"support 0" or "su 0" or "su 2" etc.
           //assume the value that follows su  is an integer.
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
