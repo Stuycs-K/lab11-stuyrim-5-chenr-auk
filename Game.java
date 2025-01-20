@@ -239,7 +239,7 @@ public class Game{
     //Clear and initialize
     Text.hideCursor();
     Text.clear();
-
+    System.out.print ("\033[;37m");
 
     //Things to attack:
     //Make an ArrayList of Adventurers and add 1-3 enemies to it.
@@ -399,8 +399,8 @@ public class Game{
         //not the party turn!
         //enemy attacks a randomly chosen person with a randomly chosen attack.`
         //Enemy action choices go here!
-        int randomPlayer = (int) (Math.random()) * party.size();
-        int randomAction = (int) (Math.random()) * 3;
+        int randomPlayer = (int) (Math.random() * party.size());
+        int randomAction = (int) (Math.random() * 3);
 
         if (randomAction == 0) {
           TextBox(10, 2, 40, 5,enemies.get(whichOpponent).attack(party, randomPlayer));
