@@ -69,7 +69,7 @@ public class CodeWarrior extends Adventurer{
   }
   /*Restores 5 special to other*/
   public String support(ArrayList<Adventurer> other, int n){
-    return "Gives a coffee to "+other+" and restores "
+    return "Gives a coffee to "+other.get(n)+" and restores "
     + other.get(n).restoreSpecial(5)+" "+other.get(n).getSpecialName();
   }
   /*Restores 6 special and 1 hp to self.*/
