@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public abstract class Adventurer{
   private String name;
   private int HP,maxHP;
-  private ArrayList<String>statusEffect;
-  private ArrayList<Integer>statusTurns;
+  private ArrayList<String>statusEffect = new ArrayList<String>();
+  private ArrayList<Integer>statusTurns = new ArrayList<Integer>();
   private double damageMult;
 
   //Abstract methods are meant to be implemented in child classes.
@@ -114,6 +114,9 @@ public abstract class Adventurer{
 
   public String printStatus() {
     String result = "";
+    if (statusEffect.size() == 0) {
+      return result;
+    }
     for (int i=0; i<statusEffect.size(); i++) {
       if (i==statusEffect.size()-1) {
         result+=statusEffect.get(i) + " (" + statusTurns.get(i)+")";

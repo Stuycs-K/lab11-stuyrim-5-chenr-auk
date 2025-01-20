@@ -297,14 +297,15 @@ public class Game{
 
     // ====================== start of game loop
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
-      while (party.get(whichPlayer).getStatus().contains("freeze")) {
+
+      while (party.get(whichPlayer).getStatus().size() > 0 && party.get(whichPlayer).getStatus().contains("freeze")) {
         party.get(whichPlayer).freeze();
         whichPlayer++;
       }
 
       if (whichPlayer < 3) {
         displayMoveset(party, whichPlayer);
-        if (party.get(whichPlayer).getStatus().contains("bleed")) {
+        if (party.get(whichPlayer).getStatus().size() > 0 && party.get(whichPlayer).getStatus().contains("bleed")) {
           party.get(whichPlayer).bleed();
         }
       }

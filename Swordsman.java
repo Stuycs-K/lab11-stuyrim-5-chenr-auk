@@ -71,7 +71,8 @@ public class Swordsman extends Adventurer {
       }
     }
     else {
-      return "Not enough Rage!";
+      attack(other, n);
+      return "Not enough Rage! Swordsman dealt a normal attack.";
     }
   }
 
