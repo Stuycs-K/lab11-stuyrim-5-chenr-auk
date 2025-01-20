@@ -372,7 +372,7 @@ public class Game{
         else{
           //This is after the player's turn, and allows the user to see the enemy turn
           //Decide where to draw the following prompt:
-          String prompt = "Press enter to see monster's turn               ";
+          String prompt = "Press enter to see monster's turn                                       ";
           drawText(prompt, 27, 2);
 
           partyTurn = false;
