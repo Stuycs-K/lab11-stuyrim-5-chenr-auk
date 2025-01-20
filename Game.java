@@ -160,9 +160,17 @@ public class Game{
     String output = String.format("%2s", hp+"")+"/"+String.format("%2s", maxHP+"");
     //COLORIZE THE OUTPUT IF HIGH/LOW:
     // under 25% : red
+    if (hp <= (double)(0.25*maxHP)) {
+      return Text.colorize(output, Text.RED);
+    }
     // under 75% : yellow
+    else if (hp <= (double)(0.75*maxHP)) {
+      return Text.colorize(output, Text.YELLOW);
+    }
     // otherwise : white
-    return output;
+    else {
+      return output;
+    }
   }
 
 
