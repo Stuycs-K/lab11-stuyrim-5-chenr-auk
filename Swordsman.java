@@ -36,22 +36,13 @@ public class Swordsman extends Adventurer {
   }
 
   public String attack(ArrayList<Adventurer> other, int n) {
-    double damageMult = 0;
-    if (this.getStatus().equals("highDamage")) {
-      damageMult = 1.5;
-    }
-    else {
-      damageMult = 1;
-    }
-    this.setStatus("none", 1);
-
-    int damage = (int)(((Math.random()*5)+5)*damageMult);
+    int damage = (int)(((Math.random()*5)+5)*this.damageMult());
     int bleed = (int)(Math.random()*5);
 
     if (bleed == 0) {
       other.get(n).applyDamage(damage);
       other.get(n).setStatus("bleed", 2);
-      restoreSpecial(2);
+      restoreSpecial(3);
 
       return this + " attacked " + other.get(n).getName() + " for " + damage + " damage and applied BLEED for two turns. " + this + " gained 2 Rage";
     }
@@ -65,15 +56,6 @@ public class Swordsman extends Adventurer {
   }
 
   public String specialAttack(ArrayList<Adventurer> other, int n) {
-    double damageMult = 0;
-    if (this.getStatus().equals("highDamage")) {
-      damageMult = 1.5;
-    }
-    else {
-      damageMult = 1;
-    }
-    this.setStatus("none", 1);
-
     if (this.getSpecial() >= 3) {
       int otherHealth = other.get(n).getHP();
       if (otherHealth < other.get(n).getmaxHP() / 2) {
@@ -82,7 +64,7 @@ public class Swordsman extends Adventurer {
         return this + " dealt a fatal blow to " + other.get(n).getName() + "!";
       }
       else {
-        int damage = (int)(10*damageMult);
+        int damage = (int)(10*this.damageMult());
         other.get(n).applyDamage(damage);
         this.setSpecial(this.getSpecial()-3);
         return this + " attacked " + other.get(n).getName() + " for " + damage + " damage! " + this + " gained 2 Rage";
@@ -94,12 +76,12 @@ public class Swordsman extends Adventurer {
   }
 
   public String support() {
-    this.setStatus("highDamage", 1);
-    return "Swordsman sharpened his blade! Increases next attack damage by 1.5x"; 
+    this.setDamageMult(1.5);
+    return "Swordsman increased its own damage! Increases next attack damage by 1.5x."; 
   }
 
   public String support(ArrayList<Adventurer> other, int n) {
-    // increase attack damage of a teammate
-    return "Swordsman somehow increased the damage of someone else! Increases " + other.get(n).getName() + "'s next attack damage by 2x."; 
+    other.get(n).setDamageMult(1.5);
+    return "Swordsman increased the damage of " + other.get(n).getName() + "! Increases " + other.get(n).getName() + "'s next attack damage by 1.5x."; 
   }
 }
