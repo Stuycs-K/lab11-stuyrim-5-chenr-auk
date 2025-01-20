@@ -309,7 +309,6 @@ public class Game{
       else {
         partyTurn = false;
       }
-
       //Read user input
       input = userInput(in);
 
@@ -394,8 +393,6 @@ public class Game{
       
       else{
         drawText("\r", 7, 2);
-
-          if (enemies.get(whichOpponent).getHP() > 0) {
           //not the party turn!
           //enemy attacks a randomly chosen person with a randomly chosen attack.`
           //Enemy action choices go here!
@@ -412,20 +409,38 @@ public class Game{
             int randomAction = (int) (Math.random() * 3);
 
               if (randomAction == 0) {
-                TextBox(10, 2, 40, 5,enemies.get(whichOpponent).attack(party, randomPlayer));
-              } 
-              if (randomAction == 1) {
-                TextBox(10, 2, 40, 5,enemies.get(whichOpponent).specialAttack(party, randomPlayer));
+                if (party.get(randomPlayer).getHP() <= 0) {
+                try {
+                TextBox(10, 2, 40, 5,enemies.get(whichOpponent).attack(party, randomPlayer + 1));
+                }
+                catch (Exception e) {
+                  TextBox(10, 2, 40, 5,enemies.get(whichOpponent).attack(party, randomPlayer - 1));
+                }
               }
+              else {
+              TextBox(10, 2, 40, 5,enemies.get(whichOpponent).attack(party, randomPlayer));
+                }
+            } 
+              if (randomAction == 1) {
+                if (party.get(randomPlayer).getHP() <= 0) {
+                try {
+                TextBox(10, 2, 40, 5,enemies.get(whichOpponent).specialAttack(party, randomPlayer + 1));
+                }
+                catch (Exception e) {
+                  TextBox(10, 2, 40, 5,enemies.get(whichOpponent).specialAttack(party, randomPlayer - 1));
+                }
+              }
+              else {
+              TextBox(10, 2, 40, 5,enemies.get(whichOpponent).specialAttack(party, randomPlayer));
+                }
+            }
               if (randomAction == 2) {
                 TextBox(10, 2, 40, 5,enemies.get(whichOpponent).support(enemies, randomPlayer));
               }
             //Decide where to draw the following prompt:
             String prompt = "press enter to see next turn";
 
-            whichOpponent++;
-          }
-        }
+          whichOpponent++;
 
         for (int i = 0; i < party.size(); i++) {
           if (party.get(i).getHP() <= 0) {
@@ -451,15 +466,6 @@ public class Game{
 
 
     }//end of main game loop
-
-
-
-
-
-
-
-
-
 
     //After quit reset things:
     quit();
