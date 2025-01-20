@@ -152,6 +152,8 @@ public class Game{
         }
         else {
           drawText("HP: DEAD   ", startRow+1, col);
+          TextBox(startRow+2, col, 20, 1, "");
+          TextBox(startRow+3, col, 20, 1, "");
         }
         
         col += 26;
@@ -395,26 +397,39 @@ public class Game{
       }/////////////////-------------
       
       else{
-        drawText("                              ", 7, 2);
+        TextBox(7, 2, 40, 1, "");
         //not the party turn!
         //enemy attacks a randomly chosen person with a randomly chosen attack.`
         //Enemy action choices go here!
-        int randomPlayer = (int) (Math.random() * party.size());
-        int randomAction = (int) (Math.random() * 3);
 
-        if (randomAction == 0) {
-          TextBox(10, 2, 40, 5,enemies.get(whichOpponent).attack(party, randomPlayer));
-        } 
-        if (randomAction == 1) {
-          TextBox(10, 2, 40, 5,enemies.get(whichOpponent).specialAttack(party, randomPlayer));
+        while (whichOpponent < 3 && enemies.get(whichOpponent).getStatus().size() > 0 && enemies.get(whichOpponent).getStatus().contains("freeze")) {
+          // if frozen do this
+          enemies.get(whichOpponent).freeze();
+          whichOpponent++;
         }
-        if (randomAction == 2) {
-          TextBox(10, 2, 40, 5,enemies.get(whichOpponent).support(enemies, randomPlayer));
-        }
-        //Decide where to draw the following prompt:
-        String prompt = "press enter to see next turn";
+  
+        if (whichOpponent < 3) {
+          // if normal turn do this
+          if (enemies.get(whichOpponent).getStatus().size() > 0 && enemies.get(whichOpponent).getStatus().contains("bleed")) {
+            enemies.get(whichOpponent).bleed();
+          }
+          int randomPlayer = (int) (Math.random() * party.size());
+          int randomAction = (int) (Math.random() * 3);
 
-        whichOpponent++;
+          if (randomAction == 0) {
+            TextBox(10, 2, 40, 5,enemies.get(whichOpponent).attack(party, randomPlayer));
+          } 
+          if (randomAction == 1) {
+            TextBox(10, 2, 40, 5,enemies.get(whichOpponent).specialAttack(party, randomPlayer));
+          }
+          if (randomAction == 2) {
+            TextBox(10, 2, 40, 5,enemies.get(whichOpponent).support(enemies, randomPlayer));
+          }
+          //Decide where to draw the following prompt:
+          String prompt = "press enter to see next turn";
+
+          whichOpponent++;
+        }
 
         for (int i = 0; i < party.size(); i++) {
           if (party.get(i).getHP() <= 0) {
@@ -432,6 +447,7 @@ public class Game{
         partyTurn=true;
         //display this prompt before player's turn
         String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit 1/2/3";
+        TextBox(27, 2, 77, 1, prompt);
       }
 
       //display the updated screen after input has been processed.
