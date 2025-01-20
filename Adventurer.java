@@ -7,6 +7,7 @@ public abstract class Adventurer{
   private int HP,maxHP;
   private ArrayList<String>statusEffect;
   private ArrayList<Integer>statusTurns;
+  private double damageMult;
 
   //Abstract methods are meant to be implemented in child classes.
   /*
@@ -167,7 +168,11 @@ public abstract class Adventurer{
     }
   }
 
-  public int damageMult() {
+  public void setDamageMult(double mult) {
+    this.damageMult = mult;
+  }
+
+  public int damageMult(int mult) {
 
   }
 }
