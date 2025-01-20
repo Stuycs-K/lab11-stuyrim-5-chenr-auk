@@ -19,9 +19,23 @@ Make a clear list of features that work/dont work
 
 Implementation of Classes :white_check_mark:
 
-Theme : Simple RPG :
+Theme : Simple RPG :white_check_mark:
 
-Game :x:
+Game :question:
+
+Displaying the Game :white_check_mark:
+
+Dead People Being Dead :x:
+
+Status Effects :white_check_mark:
+
+Normal Attack :white_check_mark:
+
+Self-Support & Ally Support :white_check_mark:
+
+Special Attack :white_check_mark:
+
+
 
 ## Adventurer Subclasses
 
