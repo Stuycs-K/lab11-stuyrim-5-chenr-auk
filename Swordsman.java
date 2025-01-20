@@ -41,7 +41,7 @@ public class Swordsman extends Adventurer {
 
     if (bleed == 0) {
       other.get(n).applyDamage(damage);
-      other.get(n).setStatus("bleed", 2);
+      other.get(n).applyBleed();
       restoreSpecial(3);
 
       return this + " attacked " + other.get(n).getName() + " for " + damage + " damage and applied BLEED for two turns. " + this + " gained 2 Rage";
