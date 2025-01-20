@@ -115,7 +115,7 @@ public class Game{
     //return a random adventurer (choose between all available subclasses)
     //feel free to overload this method to allow specific names/stats.
     public static Adventurer createRandomAdventurer(){
-      int chooser = (int)(Math.random()*2);
+      int chooser = (int)(Math.random()*3);
       if (chooser == 0) {
         return new Archmage();
       }
