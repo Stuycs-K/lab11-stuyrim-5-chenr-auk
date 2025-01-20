@@ -225,7 +225,7 @@ public class Game{
     }
     else if (party.get(whichPlayer).getName() == "Archmage") {
       TextBox(15, 2, 24, 6, "ATTACK: BLAST deals damage equal to half this Archmage's mana; gains 2 Mana");
-      TextBox(15, 28, 24, 6, "SPECIAL ATTACK: FREEZE STORM [Requires 40 Mana] freezes all opponents for two turns");
+      TextBox(15, 28, 24, 6, "SPECIAL ATTACK: FREEZE STORM [Requires 40 Mana] freezes all opponents for one turn");
       TextBox(15, 54, 24, 6, "SUPPORT: FORCE FIELD projects a shield that blocks 20 damage onto a team member; gains 2 Mana");
     }
     else if (party.get(whichPlayer).getName() == "Bob") {
@@ -436,7 +436,7 @@ public class Game{
 
 
 
-    
+
 
     //After quit reset things:
     quit();

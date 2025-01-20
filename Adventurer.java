@@ -133,24 +133,15 @@ public abstract class Adventurer{
   }
 
   public String bleed() {
-    if (this.getStatus().equals("bleed") && statusTurns > 0) {
-      this.applyDamage(2);
-      statusTurns--;
-      return this + " is bleeding! " + this + " lost 2 HP.";
-    }
-    else {
-      return getStatus();
-    }
+    
+  }
+
+  public void applyFreeze() {
+    this.setStatus("freeze", 1);
   }
 
   public String freeze() {
-    if (this.getStatus().equals("freeze") && statusTurns > 0) {
-      statusTurns--;
-      return this + " is frozen!";
-    }
-    else {
-      return getStatus();
-    }
+    
   }
 
   public int damageMult() {

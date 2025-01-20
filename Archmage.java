@@ -57,6 +57,6 @@ public class Archmage extends Adventurer{
         for (int i = 0; i < others.size(); i++) {
             others.get(i).setStatus("frozen", 2);
         }
-        return this + " froze all enemies for 2 turns!";
+        return this + " froze all enemies for one turn!";
     }
 }

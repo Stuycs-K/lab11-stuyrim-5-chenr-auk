@@ -37,5 +37,5 @@ Game :x:
 | :-----: | :-----: | :-----: |
 | _Attack_ | Blast | does damage to opponent, not too much damage |
 | _Support_ | Force Field | creates a shield that blocks 20 damage, can be applied on teammate or self |
-| _Special Ability_ | Freeze Storm |freezes all enemies for two turns |
+| _Special Ability_ | Freeze Storm |freezes all enemies for one turn |
 
