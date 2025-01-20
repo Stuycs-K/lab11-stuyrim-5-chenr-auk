@@ -274,7 +274,7 @@ public class Game{
     //Main loop
 
     //display this prompt at the start of the game.
-    String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/support/special/quit";
+    String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/support/special/quit 1/2/3";
     drawText(preprompt, 27, 2);
     if (whichPlayer < 3) {
       displayMoveset(party, whichPlayer);
@@ -345,7 +345,7 @@ public class Game{
         if(whichPlayer < party.size()){
           //This is a player turn.
           //Decide where to draw the following prompt:
-          String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+          String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit 1/2/3";
           TextBox(27, 2, 77, 1, prompt);
         }
         
@@ -387,7 +387,7 @@ public class Game{
         turn++;
         partyTurn=true;
         //display this prompt before player's turn
-        String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+        String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit 1/2/3";
       }
 
       //display the updated screen after input has been processed.
