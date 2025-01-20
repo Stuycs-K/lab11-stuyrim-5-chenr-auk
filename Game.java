@@ -145,9 +145,17 @@ public class Game{
       int counter = 0; 
       while (counter < party.size()) {
         drawText(party.get(counter).getName(), startRow, col);
-        drawText("HP: "+colorByPercent(party.get(counter).getHP(), party.get(counter).getmaxHP()), startRow + 1, col);
-        drawText("" + party.get(counter).getSpecialName() + ": " + party.get(counter).getSpecial() + "/" + party.get(counter).getSpecialMax(), startRow + 2, col);
-        drawText("Status: " + party.get(counter).getStatus(), startRow + 3, col);
+        if (party.get(counter).getHP() > 0) {
+          drawText("HP: "+colorByPercent(party.get(counter).getHP(), party.get(counter).getmaxHP()), startRow + 1, col);
+          drawText(party.get(counter).getSpecialName() + ": " + party.get(counter).getSpecial() + "/" + party.get(counter).getSpecialMax(), startRow + 2, col);
+          drawText("Status: " + party.get(counter).getStatus(), startRow + 3, col);
+        }
+        else {
+          drawText("HP: DEAD   ", startRow+1, col);
+          drawText(party.get(counter).getSpecialName() + ": DEAD", startRow + 2, col);
+          drawText("Status: DEAD", startRow + 3, col);
+        }
+        
         col += 26;
         counter++;
       }
@@ -293,8 +301,8 @@ public class Game{
       // TextBox(24,2,1,78,"input: "+input+" partyTurn:"+partyTurn+ " whichPlayer="+whichPlayer+ " whichOpp="+whichOpponent);
 
       //display event based on last turn's input
+      ////////
       if(partyTurn){
-        
         //Process user input for the last Adventurer:
         if(input.startsWith("attack ") || input.startsWith("a ")){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
@@ -359,7 +367,7 @@ public class Game{
           whichOpponent = 0;
         }
         //done with one party member
-      }
+      }/////////////////-------------
       
       else{
         //not the party turn!
