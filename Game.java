@@ -214,6 +214,11 @@ public class Game{
       TextBox(15, 28, 24, 6, "SPECIAL ATTACK: FREEZE STORM [Requires 40 mana] freezes all opponents for two turns");
       TextBox(15, 54, 24, 6, "SUPPORT: FORCE FIELD projects a shield that blocks 20 damage onto a team member");
     }
+    else if (party.get(whichPlayer).getName() == "Bob") {
+      TextBox(15, 2, 24, 6, "ATTACK");
+      TextBox(15, 28, 24, 6, "SPECIAL ATTACK");
+      TextBox(15, 54, 24, 6, "SUPPORT");
+    }
   }
 
   public static void run(){
@@ -263,11 +268,15 @@ public class Game{
     //display this prompt at the start of the game.
     String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
     drawText(preprompt, 27, 2);
-    displayMoveset(party, whichPlayer);
+    if (whichPlayer < 3) {
+      displayMoveset(party, whichPlayer);
+    }
 
     // ====================== start of game loop
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
-      displayMoveset(party, whichPlayer);
+      if (whichPlayer < 3) {
+        displayMoveset(party, whichPlayer);
+      }
 
       //Read user input
       input = userInput(in);
@@ -334,7 +343,8 @@ public class Game{
         else{
           //This is after the player's turn, and allows the user to see the enemy turn
           //Decide where to draw the following prompt:
-          String prompt = "press enter to see monster's turn";
+          String prompt = "Press enter to see monster's turn               ";
+          drawText(prompt, 27, 2);
 
           partyTurn = false;
           whichOpponent = 0;
