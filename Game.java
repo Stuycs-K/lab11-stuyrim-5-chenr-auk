@@ -344,8 +344,8 @@ public class Game{
         if(whichPlayer < party.size()){
           //This is a player turn.
           //Decide where to draw the following prompt:
-          String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit" + "                ";
-          drawText(prompt, 27, 2);
+          String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+          TextBox(27, 2, 77, 1, prompt);
         }
         
         else{
