@@ -267,7 +267,7 @@ public class Game{
     ArrayList<Adventurer> party = new ArrayList<>();
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     //YOUR CODE HERE
-    int partyCount = 2 + (int)(Math.random()* 3);
+    int partyCount = 2 + (int) (Math.random() * 3);
     for (int i = 0; i < partyCount; i++) {
       party.add(createRandomAdventurer());
     }
@@ -313,10 +313,13 @@ public class Game{
         TextBox(78, 2, 70, 1, "");
         TextBox(79, 2, 70, 1, "");
 
-        if (whichPlayer < party.size()-1) { // if there is a next player to go to on the party
-          //This is a player turn.
-          //Decide where to draw the following prompt:
-          
+        // check for freeze, skip turns if needed
+        while (whichPlayer < party.size() && party.get(whichPlayer).getStatus().size() > 0 && party.get(whichPlayer).getStatus().contains("freeze")) {
+          party.get(whichPlayer).freeze();
+          whichPlayer++;
+        }
+
+        if (whichPlayer < party.size()) { // if there is a next player to go to on the party
           displayMoveset(party, whichPlayer);
           if (party.get(whichPlayer).getStatus().size() > 0 && party.get(whichPlayer).getStatus().contains("bleed")) {
             party.get(whichPlayer).bleed();
@@ -380,10 +383,10 @@ public class Game{
         else{ // if there is not a next player to go on the party
           //This is after the player's turn, and allows the user to see the enemy turn
           //Decide where to draw the following prompt:
-          String prompt = "Press enter to see monster's turn";
+          String prompt = "Press enter to see monster's turn                                                      ";
+          drawText(prompt, 27, 2);
           TextBox(27, 2, 77, 1, prompt);
-          TextBox(28, 2, 78, 1, "");
-
+  
           partyTurn = false;
           whichOpponent = 0;
         }
@@ -396,6 +399,10 @@ public class Game{
           //not the party turn!
           //enemy attacks a randomly chosen person with a randomly chosen attack.`
           //Enemy action choices go here!
+          while (whichOpponent < enemies.size() && party.get(whichOpponent).getStatus().size() > 0 && party.get(whichOpponent).getStatus().contains("freeze")) {
+            party.get(whichOpponent).freeze();
+            whichOpponent++;
+          }
     
           if (whichOpponent < 3) {
             if (enemies.get(whichOpponent).getStatus().size() > 0 && enemies.get(whichOpponent).getStatus().contains("bleed")) {
