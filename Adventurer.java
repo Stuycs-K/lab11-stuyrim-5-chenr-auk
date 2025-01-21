@@ -162,12 +162,9 @@ public abstract class Adventurer{
       return;
     }
 
-    else {
-      this.statusTurns.set(indexOfFreeze, this.statusTurns.get(indexOfFreeze)-1); // set freeze turns to one less
-      if (statusTurns.get(indexOfFreeze) == 0) { // if freeze is done, remove the freeze status
-        this.statusEffect.remove(indexOfFreeze);
-        this.statusTurns.remove(indexOfFreeze);
-      }
+    else { // if there is freeze, remove the freeze status
+      this.statusEffect.remove(indexOfFreeze);
+      this.statusTurns.remove(indexOfFreeze);
     }
   }
 
