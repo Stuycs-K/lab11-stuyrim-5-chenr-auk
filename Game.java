@@ -316,17 +316,35 @@ int enemyCount = 1 + (int) (Math.random() * 3);
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
           drawText("                          ", 28, 2); // to block out previous input
           drawText("                          ", 29, 2); // to block out invalid input text
-          whichOpponent = Integer.parseInt(input.substring(input.length()-1));
-          TextBox(10, 2, 40, 5,party.get(whichPlayer).attack(enemies, whichOpponent-1));
+          whichOpponent = Integer.parseInt(input.substring(input.length()-1)) - 1;
+          if (enemies.get(whichOpponent).getHP() <= 0) {
+            try {
+              TextBox(10, 2, 40, 5,party.get(whichPlayer).attack(enemies, whichOpponent-1));
+            }
+            catch (Exception e) {
+              TextBox(10, 2, 40, 5,party.get(whichPlayer).attack(enemies, whichOpponent + 1));
+            }
+          }
+          else {
+            TextBox(10, 2, 40, 5,party.get(whichPlayer).attack(enemies, whichOpponent));
+          }
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
         else if((input.startsWith("special ") || input.startsWith("sp ")) && (input.endsWith("1") || input.endsWith("2") || input.endsWith("3"))){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
           drawText("                          ", 28, 2); // to block out previous input
           drawText("                          ", 29, 2); // to block out invalid input text
-          whichOpponent = Integer.parseInt(input.substring(input.length()-1));
-
-          TextBox(10, 2, 40, 5,party.get(whichPlayer).specialAttack(enemies, whichOpponent-1));
+          if (enemies.get(whichOpponent).getHP() <= 0) {
+            try {
+              TextBox(10, 2, 40, 5,party.get(whichPlayer).specialAttack(enemies, whichOpponent-1));
+            }
+            catch (Exception e) {
+              TextBox(10, 2, 40, 5,party.get(whichPlayer).specialAttack(enemies, whichOpponent + 1));
+            }
+          }
+          else {
+            TextBox(10, 2, 40, 5,party.get(whichPlayer).specialAttack(enemies, whichOpponent));
+          }
           //YOUR CODE HERE
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
@@ -388,15 +406,8 @@ int enemyCount = 1 + (int) (Math.random() * 3);
           //not the party turn!
           //enemy attacks a randomly chosen person with a randomly chosen attack.`
           //Enemy action choices go here!
-          while (whichOpponent < 3 && party.get(whichOpponent).getStatus().size() > 0 && party.get(whichOpponent).getStatus().contains("freeze")) {
-            party.get(whichOpponent).freeze();
-            whichOpponent++;
-          }
 
-          if (whichOpponent < 3) {
-            if (enemies.get(whichOpponent).getStatus().size() > 0 && enemies.get(whichOpponent).getStatus().contains("bleed")) {
-              enemies.get(whichOpponent).bleed();
-            }
+          if (whichOpponent < enemies.size()) {
             int randomPlayer = (int) (Math.random() * enemies.size());
             int randomAction = (int) (Math.random() * 3);
 
