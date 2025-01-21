@@ -313,7 +313,7 @@ public class Game{
           whichPlayer++;
         }
 
-        if (whichPlayer < party.size()) {
+        if (whichPlayer < party.size()) { // if there is a next player to go to on the party
           displayMoveset(party, whichPlayer);
           if (party.get(whichPlayer).getStatus().size() > 0 && party.get(whichPlayer).getStatus().contains("bleed")) {
             party.get(whichPlayer).bleed();
@@ -360,42 +360,32 @@ public class Game{
             TextBox(29, 2, 77, 1, "Invalid input, try again!");
             whichPlayer--;
           }
+
+          //You should decide when you want to re-ask for user input
+          //If no errors: move to the next member of the party
+          whichPlayer++;
+
+          // if there is a next member of the party:
+          if(whichPlayer < party.size()){
+            //This is a player turn.
+            //Decide where to draw the following prompt:
+            String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit 1/2/3";
+            TextBox(27, 2, 77, 1, prompt);
+          }
         }
 
-        else {
-          partyTurn = false;
-        }
-
-        //You should decide when you want to re-ask for user input
-        //If no errors:
-        whichPlayer++;
-
-
-        if(whichPlayer < party.size()){
-          //This is a player turn.
-          //Decide where to draw the following prompt:
-          String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit 1/2/3";
-          TextBox(27, 2, 77, 1, prompt);
-        }
-        
-        else{
+        else{ // if there is not a next player to go on the party
           //This is after the player's turn, and allows the user to see the enemy turn
           //Decide where to draw the following prompt:
           String prompt = "Press enter to see monster's turn                                                      ";
           drawText(prompt, 27, 2);
-
+  
           partyTurn = false;
           whichOpponent = 0;
         }
-
-        for (int i = 0; i < enemies.size(); i++) {
-          if (enemies.get(i).getHP() <= 0) {
-            drawText(enemies.get(i) + " has tragically died!", 7, 2);
-          }
-        }
-        //done with one party member
       }
-      // ============================================= END OF PARTY TURN ==============================================
+      
+    // ============================================= END OF PARTY TURN ==============================================
       
       else{
         drawText("\r", 7, 2);
