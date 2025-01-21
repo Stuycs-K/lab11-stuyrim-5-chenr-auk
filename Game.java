@@ -497,9 +497,6 @@ public class Game{
         String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit 1-" + enemies.size();
         TextBox(27, 2, 77, 1, prompt);
       }
-
-      winLose(enemies, party);
-
       //display the updated screen after input has been processed.
       drawScreen(party, enemies);
 
