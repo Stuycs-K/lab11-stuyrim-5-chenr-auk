@@ -249,7 +249,7 @@ public class Game{
     //start with 1 boss and modify the code to allow 2-3 adventurers later.
     ArrayList<Adventurer>enemies = new ArrayList<Adventurer>();
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    int enemyCount = 3;
+    int enemyCount = 1 + (int) (Math.random() * 3);
     for (int i = 0; i < enemyCount; i++) {
       enemies.add(createRandomAdventurer());
     }
@@ -261,7 +261,7 @@ public class Game{
     ArrayList<Adventurer> party = new ArrayList<>();
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     //YOUR CODE HERE
-    int partyCount = 3;
+    int partyCount = 2 + (int) (Math.random() * 3);
     for (int i = 0; i < partyCount; i++) {
       party.add(createRandomAdventurer());
     }
