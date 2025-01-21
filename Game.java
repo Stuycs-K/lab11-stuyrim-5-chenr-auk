@@ -237,48 +237,28 @@ public class Game{
     }
   }
 
-  public static boolean gameEnd(ArrayList<Adventurer>enemy, ArrayList<Adventurer>party) {
+  public static boolean allDead(ArrayList<Adventurer> team) {
     // checks if one team is all dead
     boolean end = true;
-
-    for (int i=0; i<enemy.size(); i++) {
-      if (enemy.get(i).getHP() >0) {
+    for (int i = 0; i < team.size(); i++) {
+      if (team.get(i).getHP() > 0) {
         end = false;
       }
     }
-
-    for (int i=0; i<party.size(); i++) {
-      if (party.get(i).getHP() >0) {
-        end = false;
-      }
-    }
-
     return end;
   }
 
-  public static void winLose(ArrayList<Adventurer>enemy, ArrayList<Adventurer>party) {
-    boolean win = true;
-    for (int i=0; i<enemy.size(); i++) {
-      if (enemy.get(i).getHP()!=0) {
-        win = false;
-      }
-    }
-    if (win == true) {
-      Text.reset();
-      TextBox(15, 35, 20, 1, "YOU WIN!");
-      quit();
-    }
-    boolean lose = true;
-    for (int i=0; i<party.size(); i++) {
-      if (enemy.get(i).getHP()!=0) {
-        win = false;
-      }
-    }
-    if (lose == true) {
-      Text.reset();
-      TextBox(15, 35, 20, 1, "YOU LOSE!");
-      quit();
-    }
+
+  public static void win() {
+    Text.reset();
+    TextBox(15, 35, 20, 1, "YOU WIN!");
+    quit();
+  }
+  
+  public static void lose() {
+    Text.reset();
+    TextBox(15, 35, 20, 1, "YOU LOSE!");
+    quit();
   }
 
   public static void run(){
@@ -339,7 +319,7 @@ public class Game{
     }  
 
     // ============================================================== start of game loop ============================================================= 
-    while((! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))) && !gameEnd(enemies, party)){
+    while((! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit")))){
       //Read user input
       input = userInput(in);
 
@@ -442,6 +422,10 @@ public class Game{
           partyTurn = false;
           whichOpponent = 0;
         }
+
+        if (allDead(enemies)) {
+          
+        }
         //done with one party member
       }/////////////////-------------
 
@@ -521,8 +505,7 @@ public class Game{
     // ============================================================== start of game loop ============================================================= 
 
 
-    //After quit reset things:
-    winLose(enemies, party);
-    // quit();
+    //After quit reset things
+    quit();
   }
 }
