@@ -303,11 +303,6 @@ public class Game{
       //display event based on last turn's input
       // =============================================== START OF PARTY TURN ===========================================
       if(partyTurn){
-
-        if (party.get(whichPlayer).getHP() <= 0) {
-          whichPlayer++;
-          continue;
-        }
         // clear all previous displays
         TextBox(7, 2, 70, 1, "");
         TextBox(78, 2, 70, 1, "");
@@ -318,12 +313,15 @@ public class Game{
           party.get(whichPlayer).freeze();
           whichPlayer++;
         }
-
         if (whichPlayer < party.size()) { // if there is a next player to go to on the party
-          displayMoveset(party, whichPlayer);
-          if (party.get(whichPlayer).getStatus().size() > 0 && party.get(whichPlayer).getStatus().contains("bleed")) {
-            party.get(whichPlayer).bleed();
+          //This is a player turn.
+
+          // if the member is dead, move onto the next member
+          if (party.get(whichPlayer).getHP() <= 0) {
+            whichPlayer++;
+            continue;
           }
+          displayMoveset(party, whichPlayer);
 
           //Process user input:
           if((input.startsWith("attack ") || input.startsWith("a ")) && (input.endsWith("1") || input.endsWith("2") || input.endsWith("3"))){
@@ -372,7 +370,7 @@ public class Game{
           whichPlayer++;
 
           // if there is a next member of the party:
-          if(whichPlayer < party.size()-1){
+          if(whichPlayer < party.size()){
             //This is a player turn.
             //Decide where to draw the following prompt:
             String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit 1-" + enemies.size();
@@ -393,6 +391,8 @@ public class Game{
       }
 
     // ============================================= END OF PARTY TURN ==============================================
+
+    // ============================================= START OF ENEMY TURN ==============================================
       
       else{
         drawText("\r", 7, 2);
