@@ -286,14 +286,10 @@ public class Game{
     //display this prompt at the start of the game.
     String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/support/special/quit 1/2/3";
     TextBox(27, 2, 77, 1, preprompt);
-    if (whichPlayer < 3) {
-      displayMoveset(party, whichPlayer);
-    }  
+    displayMoveset(party, whichPlayer);
 
     int[] livingAllies = new int[] {1, 2, 3};
     int[] livingEnemies = new int[] {1, 2, 3};
-
-
 
     // ============================================================== start of game loop ============================================================= 
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
