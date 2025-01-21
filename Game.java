@@ -267,7 +267,7 @@ public class Game{
     ArrayList<Adventurer> party = new ArrayList<>();
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     //YOUR CODE HERE
-    int partyCount = 2 + (int) (Math.random() * 3);
+    int partyCount = 2 + (int)(Math.random()* 3);
     for (int i = 0; i < partyCount; i++) {
       party.add(createRandomAdventurer());
     }
@@ -313,7 +313,12 @@ public class Game{
           whichPlayer++;
         }
 
-        if (whichPlayer < party.size()) { // if there is a next player to go to on the party
+        if (whichPlayer < party.size()-1) { // if there is a next player to go to on the party
+          //This is a player turn.
+          //Decide where to draw the following prompt:
+          String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit 1/2/3";
+          TextBox(27, 2, 77, 1, prompt);
+          
           displayMoveset(party, whichPlayer);
           if (party.get(whichPlayer).getStatus().size() > 0 && party.get(whichPlayer).getStatus().contains("bleed")) {
             party.get(whichPlayer).bleed();
@@ -364,14 +369,6 @@ public class Game{
           //You should decide when you want to re-ask for user input
           //If no errors: move to the next member of the party
           whichPlayer++;
-
-          // if there is a next member of the party:
-          if(whichPlayer < party.size()-1){
-            //This is a player turn.
-            //Decide where to draw the following prompt:
-            String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit 1/2/3";
-            TextBox(27, 2, 77, 1, prompt);
-          }
         }
 
         else{ // if there is not a next player to go on the party
