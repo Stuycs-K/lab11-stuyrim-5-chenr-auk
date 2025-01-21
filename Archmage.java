@@ -34,7 +34,7 @@ public class Archmage extends Adventurer{
 
     public String attack(ArrayList<Adventurer> others, int n) {
         Adventurer enemy = others.get(n);
-        double damage = (mana / 2)*this.damageMult();
+        double damage = 5;
         enemy.applyDamage((int)damage);
         restoreSpecial(2);
         return this + " hit " + enemy + " for " + damage + " damage and channeled 2 mana!";
