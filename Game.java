@@ -152,8 +152,8 @@ public class Game{
         }
         else {
           drawText("HP: DEAD   ", startRow+1, col);
-          TextBox(startRow+2, col, 20, 1, "");
-          TextBox(startRow+3, col, 20, 1, "");
+          TextBox(startRow+2, col, 18, 1, "");
+          TextBox(startRow+3, col, 18, 1, "");
         }
         
         col += 20;
