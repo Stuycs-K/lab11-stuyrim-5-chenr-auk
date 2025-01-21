@@ -237,6 +237,25 @@ public class Game{
     }
   }
 
+  public static boolean gameEnd(ArrayList<Adventurer>enemy, ArrayList<Adventurer>party) {
+    // checks if one team is all dead
+    boolean end = true;
+
+    for (int i=0; i<enemy.size(); i++) {
+      if (enemy.get(i).getHP() >0) {
+        end = false;
+      }
+    }
+
+    for (int i=0; i<party.size(); i++) {
+      if (party.get(i).getHP() >0) {
+        end = false;
+      }
+    }
+
+    return end;
+  }
+
   public static void winLose(ArrayList<Adventurer>enemy, ArrayList<Adventurer>party) {
     boolean win = true;
     for (int i=0; i<enemy.size(); i++) {
@@ -244,20 +263,17 @@ public class Game{
         win = false;
       }
     }
-
     if (win == true) {
       Text.reset();
       TextBox(15, 35, 20, 1, "YOU WIN!");
       quit();
     }
-
     boolean lose = true;
     for (int i=0; i<party.size(); i++) {
       if (enemy.get(i).getHP()!=0) {
         win = false;
       }
     }
-
     if (lose == true) {
       Text.reset();
       TextBox(15, 35, 20, 1, "YOU LOSE!");
@@ -323,7 +339,7 @@ public class Game{
     }  
 
     // ============================================================== start of game loop ============================================================= 
-    while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
+    while((! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))) && !gameEnd(enemies, party)){
       //Read user input
       input = userInput(in);
 
@@ -498,6 +514,7 @@ public class Game{
       }
       //display the updated screen after input has been processed.
       drawScreen(party, enemies);
+      // winLose(enemies, party);
 
 
     }//end of main game loop
@@ -505,6 +522,7 @@ public class Game{
 
 
     //After quit reset things:
-    quit();
+    winLose(enemies, party);
+    // quit();
   }
 }
