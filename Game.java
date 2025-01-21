@@ -146,7 +146,7 @@ public class Game{
       while (counter < party.size()) {
         drawText(party.get(counter).getName(), startRow, col);
         if (party.get(counter).getHP() > 0) {
-          TextBox(startRow+1, col, 18, 1, "HP: "+colorByPercent(party.get(counter).getHP(), party.get(counter).getmaxHP()));
+          TextBox(startRow+1, col, 18, 1, "HP:"+colorByPercent(party.get(counter).getHP(), party.get(counter).getmaxHP()));
           TextBox(startRow+2, col, 18, 1, party.get(counter).getSpecialName() + ": " + party.get(counter).getSpecial() + "/" + party.get(counter).getSpecialMax());
           TextBox(startRow+3, col, 18, 1, "Status: " + party.get(counter).printStatus());
         }
@@ -425,6 +425,7 @@ public class Game{
 
         if (allDead(enemies)) {
           win();
+          quit();
         }
         //done with one party member
       }/////////////////-------------
@@ -486,6 +487,7 @@ public class Game{
         }
         if (allDead(party)) {
           lose();
+          quit();
         }
       }//end of one enemy.
 
