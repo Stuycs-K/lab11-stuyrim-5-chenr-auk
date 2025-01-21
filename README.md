@@ -35,7 +35,7 @@ Self-Supports & Ally Supports :white_check_mark:
 
 Special Attacks :white_check_mark:
 
-Win and Loss Screen :check:
+Win and Loss Screen :white_check_mark:
 
 
 
