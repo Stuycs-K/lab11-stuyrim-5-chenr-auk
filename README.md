@@ -25,7 +25,7 @@ Game :question:
 
 Displaying the Game :white_check_mark:
 
-Dead People Being Dead :beetle: 
+Dead People Being Dead :check:
 
 Status Effects :question:
 
@@ -34,6 +34,8 @@ Normal Attacks :white_check_mark:
 Self-Supports & Ally Supports :white_check_mark:
 
 Special Attacks :white_check_mark:
+
+Win and Loss Screen :check:
 
 
 
