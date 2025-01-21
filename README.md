@@ -25,9 +25,9 @@ Game :question:
 
 Displaying the Game :white_check_mark:
 
-Dead People Being Dead :x:
+Dead People Being Dead :beetle:
 
-Status Effects :question:
+Status Effects :beetle:
 
 Normal Attack :white_check_mark:
 
