@@ -250,15 +250,15 @@ public class Game{
 
 
   public static void win() {
-    Text.reset();
-    TextBox(15, 35, 20, 1, "YOU WIN!");
-    quit();
+    Text.clear();
+    System.out.println("YOU WIN! Thanks for playing!");
+    System.exit(0);
   }
 
   public static void lose() {
-    Text.reset();
-    TextBox(15, 35, 20, 1, "YOU LOSE!");
-    quit();
+    Text.clear();
+    System.out.println("YOU LOST! Better luck next time!");
+    System.exit(0);
   }
 
   public static void run(){
@@ -425,7 +425,6 @@ public class Game{
 
         if (allDead(enemies)) {
           win();
-          quit();
         }
         //done with one party member
       }/////////////////-------------
@@ -487,7 +486,6 @@ public class Game{
         }
         if (allDead(party)) {
           lose();
-          quit();
         }
       }//end of one enemy.
 
