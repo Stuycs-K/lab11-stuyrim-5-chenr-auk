@@ -380,10 +380,10 @@ public class Game{
         else{ // if there is not a next player to go on the party
           //This is after the player's turn, and allows the user to see the enemy turn
           //Decide where to draw the following prompt:
-          String prompt = "Press enter to see monster's turn                                                      ";
-          drawText(prompt, 27, 2);
+          String prompt = "Press enter to see monster's turn";
           TextBox(27, 2, 77, 1, prompt);
-  
+          TextBox(28, 2, 78, 1, "");
+
           partyTurn = false;
           whichOpponent = 0;
         }
