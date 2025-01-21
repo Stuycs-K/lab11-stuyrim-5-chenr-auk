@@ -382,11 +382,11 @@ public class Game{
           drawText("                          ", 29, 2); // to block out invalid input text
 
           whichTeammate = Integer.parseInt(input.substring(input.length()-1));
-          if (! party.get(whichTeammate).getStatus().equals("none")) {
+          if (! (party.get(whichTeammate - 1).getStatus().equals("none"))) {
             TextBox(10, 2, 40, 5,party.get(whichPlayer).support(party, whichTeammate-1));
           }
           else {
-            TextBox(10, 2, 40, 5,party.get(whichTeammate) + "already has a status effect!");
+            TextBox(10, 2, 40, 5,party.get(whichTeammate - 1) + "already has a status effect!");
           }
         
           //YOUR CODE HERE
