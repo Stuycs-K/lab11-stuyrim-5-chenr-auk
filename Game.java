@@ -146,14 +146,14 @@ public class Game{
       while (counter < party.size()) {
         drawText(party.get(counter).getName(), startRow, col);
         if (party.get(counter).getHP() > 0) {
-          drawText("HP: "+colorByPercent(party.get(counter).getHP(), party.get(counter).getmaxHP()), startRow + 1, col);
-          drawText(party.get(counter).getSpecialName() + ": " + party.get(counter).getSpecial() + "/" + party.get(counter).getSpecialMax(), startRow + 2, col);
-          drawText("Status: " + party.get(counter).printStatus(), startRow + 3, col);
+          TextBox(startRow+1, col, 18, 1, "HP: "+colorByPercent(party.get(counter).getHP(), party.get(counter).getmaxHP()));
+          TextBox(startRow+2, col, 18, 1, party.get(counter).getSpecialName() + ": " + party.get(counter).getSpecial() + "/" + party.get(counter).getSpecialMax());
+          TextBox(startRow+3, col, 18, 1, "Status: " + party.get(counter).printStatus());
         }
         else {
           drawText("HP: DEAD   ", startRow+1, col);
           TextBox(startRow+2, col, 18, 1, "");
-          TextBox(startRow+3, col, 19, 1, "");
+          TextBox(startRow+3, col, 18, 1, "");
         }
 
         col += 20;
@@ -318,14 +318,9 @@ public class Game{
     //display this prompt at the start of the game.
     String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/support/special/quit 1-" + enemies.size();
     TextBox(27, 2, 77, 1, preprompt);
-    if (whichPlayer < 3) {
+    if (whichPlayer < party.size()) {
       displayMoveset(party, whichPlayer);
     }  
-
-    int[] livingAllies = new int[] {1, 2, 3};
-    int[] livingEnemies = new int[] {1, 2, 3};
-
-
 
     // ============================================================== start of game loop ============================================================= 
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
@@ -391,9 +386,13 @@ public class Game{
           drawText("                          ", 29, 2); // to block out invalid input text
 
           whichTeammate = Integer.parseInt(input.substring(input.length()-1));
-
-          TextBox(10, 2, 40, 5,party.get(whichPlayer).support(party, whichTeammate-1));
-
+          if (! party.get(whichTeammate).getStatus().equals("none")) {
+            TextBox(10, 2, 40, 5,party.get(whichPlayer).support(party, whichTeammate-1));
+          }
+          else {
+            TextBox(10, 2, 40, 5,party.get(whichTeammate) + "already has a status effect!");
+          }
+        
           //YOUR CODE HERE
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }

@@ -21,7 +21,7 @@ public class Boss extends Adventurer{
     }
 
     public String getSpecialName() {
-        return "Attack Power";
+        return "AttackPower";
     }
     public int getSpecialMax() {
         return maxAD;
