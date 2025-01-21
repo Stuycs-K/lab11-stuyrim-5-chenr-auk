@@ -153,7 +153,7 @@ public class Game{
         else {
           drawText("HP: DEAD   ", startRow+1, col);
           TextBox(startRow+2, col, 18, 1, "");
-          TextBox(startRow+3, col, 18, 1, "");
+          TextBox(startRow+3, col, 19, 1, "");
         }
 
         col += 20;
@@ -311,6 +311,13 @@ int enemyCount = 1 + (int) (Math.random() * 3);
       ////////
       if(partyTurn){
         drawText("\r", 7, 2);
+
+        if (party.get(whichPlayer).getHP() <= 0) {
+          TextBox(10, 2, 40, 5, party.get(whichPlayer) + " is dead and cannot move!");
+          whichPlayer++;
+          continue;
+        }
+
         //Process user input for the last Adventurer:
         if((input.startsWith("attack ") || input.startsWith("a ")) && (input.endsWith("1") || input.endsWith("2") || input.endsWith("3"))){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
@@ -392,12 +399,6 @@ int enemyCount = 1 + (int) (Math.random() * 3);
           partyTurn = false;
           whichOpponent = 0;
         }
-
-        for (int i = 0; i < enemies.size(); i++) {
-          if (enemies.get(i).getHP() <= 0) {
-            drawText(enemies.get(i) + " has tragically died!", 7, 2);
-          }
-        }
         //done with one party member
       }/////////////////-------------
 
@@ -406,7 +407,11 @@ int enemyCount = 1 + (int) (Math.random() * 3);
           //not the party turn!
           //enemy attacks a randomly chosen person with a randomly chosen attack.`
           //Enemy action choices go here!
-
+          if (enemies.get(whichOpponent).getHP() <= 0) {
+            TextBox(10, 2, 40, 5, enemies.get(whichOpponent) + " is dead and cannot move!");
+            whichOpponent++;
+            continue;
+          }
           if (whichOpponent < enemies.size()) {
             int randomPlayer = (int) (Math.random() * enemies.size());
             int randomAction = (int) (Math.random() * 3);
