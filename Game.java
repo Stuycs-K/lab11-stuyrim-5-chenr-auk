@@ -286,39 +286,18 @@ public class Game{
     //display this prompt at the start of the game.
     String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/support/special/quit 1/2/3";
     TextBox(27, 2, 77, 1, preprompt);
-    if (whichPlayer < 3) {
-      displayMoveset(party, whichPlayer);
-    }  
+    displayMoveset(party, whichPlayer);
 
     int[] livingAllies = new int[] {1, 2, 3};
     int[] livingEnemies = new int[] {1, 2, 3};
 
-
-
-    // ============================================================== start of game loop ============================================================= 
+    // ============================================================== START OF GAME LOOP ============================================================= 
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
-      while (whichPlayer < 3 && party.get(whichPlayer).getStatus().size() > 0 && party.get(whichPlayer).getStatus().contains("freeze")) {
-        party.get(whichPlayer).freeze();
-        whichPlayer++;
-      }
-
-      if (whichPlayer < 3) {
-        displayMoveset(party, whichPlayer);
-        if (party.get(whichPlayer).getStatus().size() > 0 && party.get(whichPlayer).getStatus().contains("bleed")) {
-          party.get(whichPlayer).bleed();
-        }
-      }
-      else {
-        partyTurn = false;
-      }
       //Read user input
       input = userInput(in);
 
-      //example debug statment
-      // TextBox(24,2,1,78,"input: "+input+" partyTurn:"+partyTurn+ " whichPlayer="+whichPlayer+ " whichOpp="+whichOpponent);
-
       //display event based on last turn's input
-      ////////
+      // =============================================== START OF PARTY TURN ===========================================
       if(partyTurn){
         drawText("\r", 7, 2);
         //Process user input for the last Adventurer:
@@ -391,7 +370,8 @@ public class Game{
           }
         }
         //done with one party member
-      }/////////////////-------------
+      }
+      // ============================================= END OF PARTY TURN ==============================================
       
       else{
         drawText("\r", 7, 2);
@@ -468,8 +448,8 @@ public class Game{
       drawScreen(party, enemies);
 
 
-    }//end of main game loop
-    // ============================================================== start of game loop ============================================================= 
+    }
+    // ============================================================== END OF GAME LOOP ============================================================= 
 
 
     //After quit reset things:
