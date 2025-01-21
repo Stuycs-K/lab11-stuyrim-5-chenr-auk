@@ -379,12 +379,13 @@ public class Game{
           //Decide where to draw the following prompt:
           String prompt = "Press enter to see monster's turn                                                      ";
           drawText(prompt, 27, 2);
+          TextBox(78, 2, 77, 1, prompt);
   
           partyTurn = false;
           whichOpponent = 0;
         }
       }
-      
+
     // ============================================= END OF PARTY TURN ==============================================
       
       else{
