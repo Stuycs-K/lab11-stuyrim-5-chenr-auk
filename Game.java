@@ -290,12 +290,13 @@ public class Game{
     //Main loop
 
     //display this prompt at the start of the game.
-    String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/support/special/quit 1/2/3";
+    String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/support/special/quit 1-" + enemies.size();
     TextBox(27, 2, 77, 1, preprompt);
     displayMoveset(party, whichPlayer);
 
     // ============================================================== START OF GAME LOOP ============================================================= 
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
+
       //Read user input
       input = userInput(in);
 
@@ -369,6 +370,14 @@ public class Game{
           //You should decide when you want to re-ask for user input
           //If no errors: move to the next member of the party
           whichPlayer++;
+
+          // if there is a next member of the party:
+          if(whichPlayer < party.size()-1){
+            //This is a player turn.
+            //Decide where to draw the following prompt:
+            String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit 1-" + enemies.size();
+            TextBox(27, 2, 77, 1, prompt);
+          }
         }
 
         else{ // if there is not a next player to go on the party
@@ -376,7 +385,7 @@ public class Game{
           //Decide where to draw the following prompt:
           String prompt = "Press enter to see monster's turn                                                      ";
           drawText(prompt, 27, 2);
-          TextBox(78, 2, 77, 1, prompt);
+          TextBox(27, 2, 77, 1, prompt);
   
           partyTurn = false;
           whichOpponent = 0;
@@ -452,7 +461,7 @@ public class Game{
         turn++;
         partyTurn=true;
         //display this prompt before player's turn
-        String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit 1/2/3";
+        String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit 1-" + enemies.size();
         TextBox(27, 2, 77, 1, prompt);
       }
 

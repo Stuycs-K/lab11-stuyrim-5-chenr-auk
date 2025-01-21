@@ -27,17 +27,13 @@ Displaying the Game :white_check_mark:
 
 Dead People Being Dead :beetle:
 
-Status Effects :beetle:
+Status Effects :question:
 
-Normal Attack :white_check_mark:
+Normal Attacks :white_check_mark:
 
-Self-Support & Ally Support :white_check_mark:
+Self-Supports & Ally Supports :white_check_mark:
 
-Special Attack :white_check_mark:
-
-Win Screen :x:
-
-Loss Screen :x:
+Special Attacks :white_check_mark:
 
 
 
