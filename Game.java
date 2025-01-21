@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.ArrayList;
 
 public class Game{
   private static final int WIDTH = 80;
@@ -299,8 +298,28 @@ public class Game{
       //display event based on last turn's input
       // =============================================== START OF PARTY TURN ===========================================
       if(partyTurn){
-        drawText("\r", 7, 2);
-        //Process user input for the last Adventurer:
+        // clear all previous displays
+        TextBox(7, 2, 70, 1, "");
+        TextBox(78, 2, 70, 1, "");
+        TextBox(79, 2, 70, 1, "");
+
+        // check for freeze, skip turns if needed
+        while (whichPlayer < 3 && party.get(whichPlayer).getStatus().size() > 0 && party.get(whichPlayer).getStatus().contains("freeze")) {
+          party.get(whichPlayer).freeze();
+          whichPlayer++;
+        }
+
+        if (whichPlayer < 3) {
+          displayMoveset(party, whichPlayer);
+          if (party.get(whichPlayer).getStatus().size() > 0 && party.get(whichPlayer).getStatus().contains("bleed")) {
+            party.get(whichPlayer).bleed();
+          }
+        }
+        else {
+          partyTurn = false;
+        }
+
+        //Process user input:
         if((input.startsWith("attack ") || input.startsWith("a ")) && (input.endsWith("1") || input.endsWith("2") || input.endsWith("3"))){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
           drawText("                          ", 28, 2); // to block out previous input
