@@ -290,7 +290,7 @@ public class Game{
     //Main loop
 
     //display this prompt at the start of the game.
-    String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/support/special/quit 1/2/3";
+    String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/support/special/quit 1-" + enemies.size();
     TextBox(27, 2, 77, 1, preprompt);
     displayMoveset(party, whichPlayer);
 
