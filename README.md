@@ -64,3 +64,10 @@ Loss Screen :x:
 | _Support_ | Caffeine Boost | Increases a team member's special resource. |
 | _Special Ability_ | Harder Code Smash | [requires 8 caffeine] Deals 3 - 12 damage. |
 
+### Boss 
+| Ability | Name | Description |
+| :-----: | :-----: | :-----: |
+| _Attack_ | Destructive Strike | Attacks an enemy for 10 damage, and increases attack power by 2. |
+| _Support_ | Recover | Recovers 15 health points. |
+| _Special Ability_ | Annihilation | Attacks all enemies based on attack power of boss, OR if the boss has max attack power, kills everyone. |
+
