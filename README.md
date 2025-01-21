@@ -25,7 +25,7 @@ Game :question:
 
 Displaying the Game :white_check_mark:
 
-Dead People Being Dead :beetle:
+Dead People Being Dead :beetle: 
 
 Status Effects :question:
 
@@ -42,16 +42,16 @@ Special Attacks :white_check_mark:
 ### Swordsman 
 | Ability | Name | Description |
 | :-----: | :-----: | :-----: |
-| _Attack_ | Sword Slash | does 5 to 10 damage and has a chance to cause BLEED which will deal damage over time for two turns. Gains one rage. |
+| _Attack_ | Sword Slash | Does 5 to 10 damage and has a chance to cause BLEED which will deal damage over time permanently. Gains one rage. |
 | _Support_ | Sharpen | Sharpens your blade and the next attack will do 1.5x damage or buffs ally damage by 1.5x. |
-| _Special Ability_ | Lethal Strike | [requires at least 3 Rage] if an opponent has half HP or less, this attack will one shot them, if not, deal 10 damage guaranteed. |
+| _Special Ability_ | Lethal Strike | [requires at least 3 Rage] If an opponent has half HP or less, this attack will one shot them, if not, deal 10 damage guaranteed. |
 
 ### Archmage
 | Ability | Name | Description |
 | :-----: | :-----: | :-----: |
 | _Attack_ | Blast | Deals damage equal to half the mana, channels two mana. |
-| _Support_ | Force Field | creates a shield that blocks 20 damage, can be applied on teammate or self, channels two mana. |
-| _Special Ability_ | Freeze Storm | [requires 40 mana] freezes all enemies for one turn. |
+| _Support_ | Force Field | Creates a shield that blocks 20 damage, can be applied on teammate or self, channels two mana. |
+| _Special Ability_ | Freeze Storm | [requires 40 mana] Freezes all enemies for one turn. |
 
 ### CodeWarrior
 | Ability | Name | Description |
