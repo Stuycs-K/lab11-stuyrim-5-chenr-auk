@@ -262,7 +262,6 @@ public class Game{
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     //YOUR CODE HERE
     int partyCount = 2 + (int) (Math.random() * 3);
-    int partyCount = 2 + (int) (Math.random() * 3);
     for (int i = 0; i < partyCount; i++) {
       party.add(createRandomAdventurer());
     }
