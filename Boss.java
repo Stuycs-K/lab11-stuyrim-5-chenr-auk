@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Boss extends Adventurer{
     int attackPower, maxAD;
     public Boss(String name, int hp){
-        name = "super Boss";
+        name = "Final Boss";
         hp = 100;
         attackPower = 10; 
         maxAD = 50;
