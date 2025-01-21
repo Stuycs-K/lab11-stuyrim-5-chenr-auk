@@ -254,7 +254,7 @@ public class Game{
     TextBox(15, 35, 20, 1, "YOU WIN!");
     quit();
   }
-  
+
   public static void lose() {
     Text.reset();
     TextBox(15, 35, 20, 1, "YOU LOSE!");
@@ -424,7 +424,7 @@ public class Game{
         }
 
         if (allDead(enemies)) {
-          
+          win();
         }
         //done with one party member
       }/////////////////-------------
@@ -447,6 +447,7 @@ public class Game{
                 if (party.get(randomPlayer).getHP() <= 0) {
                   try {
                   TextBox(10, 2, 40, 5,enemies.get(whichOpponent).attack(party, randomPlayer + 1));
+                  TextBox(10, 2, 40, 5,enemies.get(whichOpponent).attack(party, randomPlayer + 2));
                   }
                   catch (Exception e) {
                     TextBox(10, 2, 40, 5,enemies.get(whichOpponent).attack(party, randomPlayer - 1));
@@ -482,6 +483,9 @@ public class Game{
           if (party.get(i).getHP() <= 0) {
             drawText(party.get(i) + " has tragically died!", 7, 2);
           }
+        }
+        if (allDead(party)) {
+          lose();
         }
       }//end of one enemy.
 
