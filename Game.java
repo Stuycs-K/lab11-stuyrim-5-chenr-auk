@@ -34,8 +34,9 @@ public class Game{
 
       // borders separating allies
       if (j < 26 && j > 21 || j < 6 && j > 1) {
-        drawText("|", j, 27);
-        drawText("|", j, 53);
+        drawText("|", j, 21);
+        drawText("|", j,41);
+        drawText("|", j, 61);
       }
     }
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
@@ -155,7 +156,7 @@ public class Game{
           TextBox(startRow+3, col, 20, 1, "");
         }
         
-        col += 26;
+        col += 20;
         counter++;
       }
       /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
