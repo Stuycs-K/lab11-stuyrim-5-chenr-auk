@@ -293,7 +293,7 @@ public class Game{
 
 
 
-    // ====================== start of game loop
+    // ============================================================== start of game loop ============================================================= 
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
       while (whichPlayer < 3 && party.get(whichPlayer).getStatus().size() > 0 && party.get(whichPlayer).getStatus().contains("freeze")) {
         party.get(whichPlayer).freeze();
@@ -467,6 +467,8 @@ public class Game{
 
 
     }//end of main game loop
+    // ============================================================== start of game loop ============================================================= 
+
 
     //After quit reset things:
     quit();
