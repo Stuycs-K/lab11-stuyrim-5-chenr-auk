@@ -237,6 +237,34 @@ public class Game{
     }
   }
 
+  public static void winLose(ArrayList<Adventurer>enemy, ArrayList<Adventurer>party) {
+    boolean win = true;
+    for (int i=0; i<enemy.size(); i++) {
+      if (enemy.get(i).getHP()!=0) {
+        win = false;
+      }
+    }
+
+    if (win == true) {
+      Text.reset();
+      TextBox(15, 35, 20, 1, "YOU WIN!");
+      quit();
+    }
+
+    boolean lose = true;
+    for (int i=0; i<party.size(); i++) {
+      if (enemy.get(i).getHP()!=0) {
+        win = false;
+      }
+    }
+
+    if (lose == true) {
+      Text.reset();
+      TextBox(15, 35, 20, 1, "YOU LOSE!");
+      quit();
+    }
+  }
+
   public static void run(){
     //Clear and initialize
     Text.hideCursor();
@@ -249,7 +277,7 @@ public class Game{
     //start with 1 boss and modify the code to allow 2-3 adventurers later.
     ArrayList<Adventurer>enemies = new ArrayList<Adventurer>();
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-int enemyCount = 1 + (int) (Math.random() * 3);
+    int enemyCount = 1 + (int) (Math.random() * 3);
     if (enemyCount == 1) {
       enemies.add(new Boss());
     }
@@ -469,6 +497,8 @@ int enemyCount = 1 + (int) (Math.random() * 3);
         String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit 1-" + enemies.size();
         TextBox(27, 2, 77, 1, prompt);
       }
+
+      winLose(enemies, party);
 
       //display the updated screen after input has been processed.
       drawScreen(party, enemies);
