@@ -25,7 +25,7 @@ Game :question:
 
 Displaying the Game :white_check_mark:
 
-Dead People Being Dead :check:
+Dead People Being Dead :white_check_mark:
 
 Status Effects :question:
 
