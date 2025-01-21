@@ -152,8 +152,8 @@ public class Game{
         }
         else {
           drawText("HP: DEAD   ", startRow+1, col);
-          TextBox(startRow+2, col, 20, 1, "");
-          TextBox(startRow+3, col, 20, 1, "");
+          TextBox(startRow+2, col, 18, 1, "");
+          TextBox(startRow+3, col, 18, 1, "");
         }
 
         col += 20;
@@ -301,20 +301,6 @@ int enemyCount = 1 + (int) (Math.random() * 3);
 
     // ============================================================== start of game loop ============================================================= 
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
-      while (whichPlayer < 3 && party.get(whichPlayer).getStatus().size() > 0 && party.get(whichPlayer).getStatus().contains("freeze")) {
-        party.get(whichPlayer).freeze();
-        whichPlayer++;
-      }
-
-      if (whichPlayer < 3) {
-        displayMoveset(party, whichPlayer);
-        if (party.get(whichPlayer).getStatus().size() > 0 && party.get(whichPlayer).getStatus().contains("bleed")) {
-          party.get(whichPlayer).bleed();
-        }
-      }
-      else {
-        partyTurn = false;
-      }
       //Read user input
       input = userInput(in);
 
