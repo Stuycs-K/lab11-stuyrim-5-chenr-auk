@@ -313,12 +313,6 @@ public class Game{
         TextBox(78, 2, 70, 1, "");
         TextBox(79, 2, 70, 1, "");
 
-        // check for freeze, skip turns if needed
-        while (whichPlayer < party.size() && party.get(whichPlayer).getStatus().size() > 0 && party.get(whichPlayer).getStatus().contains("freeze")) {
-          party.get(whichPlayer).freeze();
-          whichPlayer++;
-        }
-
         if (whichPlayer < party.size()-1) { // if there is a next player to go to on the party
           //This is a player turn.
           //Decide where to draw the following prompt:
@@ -404,10 +398,6 @@ public class Game{
           //not the party turn!
           //enemy attacks a randomly chosen person with a randomly chosen attack.`
           //Enemy action choices go here!
-          while (whichOpponent < enemies.size() && party.get(whichOpponent).getStatus().size() > 0 && party.get(whichOpponent).getStatus().contains("freeze")) {
-            party.get(whichOpponent).freeze();
-            whichOpponent++;
-          }
     
           if (whichOpponent < 3) {
             if (enemies.get(whichOpponent).getStatus().size() > 0 && enemies.get(whichOpponent).getStatus().contains("bleed")) {
