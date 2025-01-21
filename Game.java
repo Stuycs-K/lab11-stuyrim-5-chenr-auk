@@ -303,6 +303,11 @@ public class Game{
       //display event based on last turn's input
       // =============================================== START OF PARTY TURN ===========================================
       if(partyTurn){
+
+        if (party.get(whichPlayer).getHP() <= 0) {
+          whichPlayer++;
+          continue;
+        }
         // clear all previous displays
         TextBox(7, 2, 70, 1, "");
         TextBox(78, 2, 70, 1, "");
@@ -394,7 +399,7 @@ public class Game{
           //not the party turn!
           //enemy attacks a randomly chosen person with a randomly chosen attack.`
           //Enemy action choices go here!
-          while (whichOpponent < 3 && party.get(whichOpponent).getStatus().size() > 0 && party.get(whichOpponent).getStatus().contains("freeze")) {
+          while (whichOpponent < enemies.size() && party.get(whichOpponent).getStatus().size() > 0 && party.get(whichOpponent).getStatus().contains("freeze")) {
             party.get(whichOpponent).freeze();
             whichOpponent++;
           }
