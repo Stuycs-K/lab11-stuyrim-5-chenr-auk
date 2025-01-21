@@ -250,9 +250,15 @@ public class Game{
     ArrayList<Adventurer>enemies = new ArrayList<Adventurer>();
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     int enemyCount = 1 + (int) (Math.random() * 3);
-    for (int i = 0; i < enemyCount; i++) {
-      enemies.add(createRandomAdventurer());
+    if (enemyCount == 1) {
+      enemies.add(new Boss());
     }
+    else {
+      for (int i = 0; i < enemyCount; i++) {
+        enemies.add(createRandomAdventurer());
+      }
+    }
+
     //YOUR CODE HERE
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
@@ -287,9 +293,6 @@ public class Game{
     String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/support/special/quit 1/2/3";
     TextBox(27, 2, 77, 1, preprompt);
     displayMoveset(party, whichPlayer);
-
-    int[] livingAllies = new int[] {1, 2, 3};
-    int[] livingEnemies = new int[] {1, 2, 3};
 
     // ============================================================== START OF GAME LOOP ============================================================= 
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
