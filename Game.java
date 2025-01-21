@@ -308,61 +308,62 @@ public class Game{
         TextBox(79, 2, 70, 1, "");
 
         // check for freeze, skip turns if needed
-        while (whichPlayer < 3 && party.get(whichPlayer).getStatus().size() > 0 && party.get(whichPlayer).getStatus().contains("freeze")) {
+        while (whichPlayer < party.size() && party.get(whichPlayer).getStatus().size() > 0 && party.get(whichPlayer).getStatus().contains("freeze")) {
           party.get(whichPlayer).freeze();
           whichPlayer++;
         }
 
-        if (whichPlayer < 3) {
+        if (whichPlayer < party.size()) {
           displayMoveset(party, whichPlayer);
           if (party.get(whichPlayer).getStatus().size() > 0 && party.get(whichPlayer).getStatus().contains("bleed")) {
             party.get(whichPlayer).bleed();
           }
+
+          //Process user input:
+          if((input.startsWith("attack ") || input.startsWith("a ")) && (input.endsWith("1") || input.endsWith("2") || input.endsWith("3"))){
+            /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+            drawText("                          ", 28, 2); // to block out previous input
+            drawText("                          ", 29, 2); // to block out invalid input text
+            whichOpponent = Integer.parseInt(input.substring(input.length()-1));
+            TextBox(10, 2, 40, 5,party.get(whichPlayer).attack(enemies, whichOpponent-1));
+            /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+          }
+          else if((input.startsWith("special ") || input.startsWith("sp ")) && (input.endsWith("1") || input.endsWith("2") || input.endsWith("3"))){
+            /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+            drawText("                          ", 28, 2); // to block out previous input
+            drawText("                          ", 29, 2); // to block out invalid input text
+            whichOpponent = Integer.parseInt(input.substring(input.length()-1));
+
+            TextBox(10, 2, 40, 5,party.get(whichPlayer).specialAttack(enemies, whichOpponent-1));
+            //YOUR CODE HERE
+            /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+          }
+          else if((input.startsWith("su ") || input.startsWith("support ")) && (input.endsWith("1") || input.endsWith("2") || input.endsWith("3"))){
+            //"support 0" or "su 0" or "su 2" etc.
+            //assume the value that follows su  is an integer.
+            /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+            drawText("                          ", 28, 2); // to block out previous input
+            drawText("                          ", 29, 2); // to block out invalid input text
+
+            whichTeammate = Integer.parseInt(input.substring(input.length()-1));
+
+            TextBox(10, 2, 40, 5,party.get(whichPlayer).support(party, whichTeammate-1));
+
+            //YOUR CODE HERE
+            /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+          }
+          else if (input.startsWith("q") || input.startsWith("quit")) {
+            quit();
+          }
+          else {
+            TextBox(28, 2, 77, 1, " "); // to block out previous input
+            TextBox(29, 2, 77, 1, "Invalid input, try again!");
+            whichPlayer--;
+          }
         }
+
         else {
           partyTurn = false;
-        }
-
-        //Process user input:
-        if((input.startsWith("attack ") || input.startsWith("a ")) && (input.endsWith("1") || input.endsWith("2") || input.endsWith("3"))){
-          /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-          drawText("                          ", 28, 2); // to block out previous input
-          drawText("                          ", 29, 2); // to block out invalid input text
-          whichOpponent = Integer.parseInt(input.substring(input.length()-1));
-          TextBox(10, 2, 40, 5,party.get(whichPlayer).attack(enemies, whichOpponent-1));
-          /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-        }
-        else if((input.startsWith("special ") || input.startsWith("sp ")) && (input.endsWith("1") || input.endsWith("2") || input.endsWith("3"))){
-          /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-          drawText("                          ", 28, 2); // to block out previous input
-          drawText("                          ", 29, 2); // to block out invalid input text
-          whichOpponent = Integer.parseInt(input.substring(input.length()-1));
-
-          TextBox(10, 2, 40, 5,party.get(whichPlayer).specialAttack(enemies, whichOpponent-1));
-          //YOUR CODE HERE
-          /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-        }
-        else if((input.startsWith("su ") || input.startsWith("support ")) && (input.endsWith("1") || input.endsWith("2") || input.endsWith("3"))){
-          //"support 0" or "su 0" or "su 2" etc.
-          //assume the value that follows su  is an integer.
-          /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-          drawText("                          ", 28, 2); // to block out previous input
-          drawText("                          ", 29, 2); // to block out invalid input text
-
-          whichTeammate = Integer.parseInt(input.substring(input.length()-1));
-
-          TextBox(10, 2, 40, 5,party.get(whichPlayer).support(party, whichTeammate-1));
-
-          //YOUR CODE HERE
-          /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-        }
-        else if (input.startsWith("q") || input.startsWith("quit")) {
-          quit();
-        }
-        else {
-          TextBox(28, 2, 77, 1, " "); // to block out previous input
-          TextBox(29, 2, 77, 1, "Invalid input, try again!");
-          whichPlayer--;
         }
 
         //You should decide when you want to re-ask for user input
