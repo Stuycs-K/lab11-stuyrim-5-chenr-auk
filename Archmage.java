@@ -42,10 +42,15 @@ public class Archmage extends Adventurer{
 
     public String support(ArrayList<Adventurer> others, int n) {
         Adventurer ally = others.get(n);
-        int shield = mana;
-        ally.setHP(shield + ally.getHP());
-        mana = mana / 2;
-        return this + " shielded " + ally + " for " + shield + " shield and used " + mana + " mana!";
+        if (ally.getHP() <= 0) {
+            return this + " cannot shield a dead ally!";
+        }
+        else {
+            int shield = mana;
+            ally.setHP(shield + ally.getHP());
+            mana = mana / 2;
+            return this + " shielded " + ally + " for " + shield + " shield and used " + mana + " mana!";
+        }
     }
 
     public String support() {
