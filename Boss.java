@@ -42,10 +42,18 @@ public class Boss extends Adventurer{
     }
 
     public String specialAttack(ArrayList<Adventurer> others, int n) {
-        for (int i = 0; i < others.size(); i++) {
-            others.get(i).applyDamage(attackPower);
-        }
         int damage = attackPower * 2;
-        return this + " attacked all enemies for " + damage + " damage! A devasting blow!";
+        if (attackPower == 50) {
+            for (int i = 0; i < others.size(); i++) {
+                others.get(i).applyDamage(damage);
+            }
+            return this + " attacked all enemies for " + damage + " damage! A devasting blow!";
+        }
+        else {
+            for (int i = 0; i < others.size(); i++) {
+                others.get(i).applyDamage(attackPower);
+            }
+            return this + " attacked all enemies for " + attackPower + " damage!";
+        }
     }
 }
