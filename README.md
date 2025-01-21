@@ -27,13 +27,17 @@ Displaying the Game :white_check_mark:
 
 Dead People Being Dead :x:
 
-Status Effects :white_check_mark:
+Status Effects :question:
 
 Normal Attack :white_check_mark:
 
 Self-Support & Ally Support :white_check_mark:
 
 Special Attack :white_check_mark:
+
+Win Screen :x:
+
+Loss Screen :x:
 
 
 
