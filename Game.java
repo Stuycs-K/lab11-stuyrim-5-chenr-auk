@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.ArrayList;
 
 public class Game{
   private static final int WIDTH = 80;
@@ -35,8 +34,9 @@ public class Game{
 
       // borders separating allies
       if (j < 26 && j > 21 || j < 6 && j > 1) {
-        drawText("|", j, 27);
-        drawText("|", j, 53);
+        drawText("|", j, 21);
+        drawText("|", j, 41);
+        drawText("|", j, 61);
       }
     }
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
@@ -156,7 +156,7 @@ public class Game{
           TextBox(startRow+3, col, 20, 1, "");
         }
 
-        col += 26;
+        col += 20;
         counter++;
       }
       /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
@@ -249,9 +249,14 @@ public class Game{
     //start with 1 boss and modify the code to allow 2-3 adventurers later.
     ArrayList<Adventurer>enemies = new ArrayList<Adventurer>();
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    int enemyCount = 1 + (int) (Math.random() * 3);
-    for (int i = 0; i < enemyCount; i++) {
-      enemies.add(createRandomAdventurer());
+int enemyCount = 1 + (int) (Math.random() * 3);
+    if (enemyCount == 1) {
+      enemies.add(new Boss());
+    }
+    else {
+      for (int i = 0; i < enemyCount; i++) {
+        enemies.add(createRandomAdventurer());
+      }
     }
     //YOUR CODE HERE
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
@@ -283,7 +288,7 @@ public class Game{
     //Main loop
 
     //display this prompt at the start of the game.
-    String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/support/special/quit 1/2/3";
+    String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/support/special/quit 1-" + enemies.size();
     TextBox(27, 2, 77, 1, preprompt);
     if (whichPlayer < 3) {
       displayMoveset(party, whichPlayer);
@@ -370,7 +375,7 @@ public class Game{
         if(whichPlayer < party.size()){
           //This is a player turn.
           //Decide where to draw the following prompt:
-          String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit 1/2/3";
+          String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit 1-" + enemies.size();
           TextBox(27, 2, 77, 1, prompt);
         }
 
@@ -459,7 +464,7 @@ public class Game{
         turn++;
         partyTurn=true;
         //display this prompt before player's turn
-        String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit 1/2/3";
+        String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit 1-" + enemies.size();
         TextBox(27, 2, 77, 1, prompt);
       }
 
