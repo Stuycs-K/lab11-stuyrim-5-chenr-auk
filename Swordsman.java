@@ -7,7 +7,7 @@ public class Swordsman extends Adventurer {
   public Swordsman(String name, int HP) {
     super(name, HP);
     HP = 30;
-    Rage = 0;
+    Rage = 4;
     maxRage = 5;
   }
 

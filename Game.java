@@ -366,7 +366,7 @@ public class Game{
           whichPlayer++;
 
           // if there is a next member of the party:
-          if(whichPlayer < party.size()){
+          if(whichPlayer < party.size()-1){
             //This is a player turn.
             //Decide where to draw the following prompt:
             String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit 1/2/3";
