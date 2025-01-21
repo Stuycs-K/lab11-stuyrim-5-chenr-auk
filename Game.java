@@ -316,8 +316,6 @@ public class Game{
         if (whichPlayer < party.size()-1) { // if there is a next player to go to on the party
           //This is a player turn.
           //Decide where to draw the following prompt:
-          String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit 1/2/3";
-          TextBox(27, 2, 77, 1, prompt);
           
           displayMoveset(party, whichPlayer);
           if (party.get(whichPlayer).getStatus().size() > 0 && party.get(whichPlayer).getStatus().contains("bleed")) {
